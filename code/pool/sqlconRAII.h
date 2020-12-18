@@ -1,6 +1,6 @@
 /**
  * @Author:         yds
- * @Date    :       2020-12-17
+ * @Date    :       2020-12-18
 */
 
 #ifndef __SQLCONRAII_H_
@@ -16,7 +16,7 @@ public:
         sql_ = *sql;
         conpool_ = conpool;
     }
-    
+
     ~SqlConRAII() { 
         conpool_->free_connection(sql_);
     }
