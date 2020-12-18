@@ -61,4 +61,19 @@ private:
     std::unique_ptr<std::thread> write_thread_;//写日志线程
 };
 
+#define LOG_BASE(level, format, ...) \
+    do {\
+        Log* log = Log::instance();\
+        if (log->is_open() && log->get_level() <= level) {\
+            log->write(level, format, ##__VA_ARGS__); \
+            log->flush();\
+        }\
+    } while(0);
+
+#define LOG_DEBUG(format, ...) do {LOG_BASE(0, format, ##__VA_ARGS__)} while(0);
+#define LOG_INFO(format, ...) do {LOG_BASE(1, format, ##__VA_ARGS__)} while(0);
+#define LOG_WARN(format, ...) do {LOG_BASE(2, format, ##__VA_ARGS__)} while(0);
+#define LOG_ERROR(format, ...) do {LOG_BASE(3, format, ##__VA_ARGS__)} while(0);
+
+
 #endif // !__LOG_H_
