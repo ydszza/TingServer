@@ -149,7 +149,7 @@ void HeapTimer::pop() {
 /**
  * 执行超时回调并获取下一个定时时间
 */
-int HeapTimer::get_next_expires() {
+int HeapTimer::get_next_tick() {
     tick();
     size_t ret = -1;
     if (heap_.size()) {

@@ -14,10 +14,10 @@
 #include <errno.h>
 
 
-class EPoller {
+class Epoller {
 public:
-    explicit EPoller(int max_event = 1024);
-    ~EPoller();
+    explicit Epoller(int max_event = 1024);
+    ~Epoller();
 
     bool add_fd(int fd, uint32_t events);
     bool mod_fd(int fd, uint32_t events);

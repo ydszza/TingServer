@@ -40,7 +40,7 @@ public:
     void clear();
     void tick();
     void pop();
-    int get_next_expires();
+    int get_next_tick();
 
 private:
     void del(size_t i);
