@@ -3,9 +3,8 @@
  * @Date    :       2020-12-20
 */
 
-#ifndef __SERVER_H_
-#define __SERVER_H_
-
+#ifndef __WEBSERVER_H_
+#define __WEBSERVER_H_
 
 #include <sys/socket.h>
 #include <arpa/inet.h>
@@ -14,14 +13,14 @@
 #include "heaptimer.h"
 #include "threadpool.h"
 #include "epoller.h"
+#include "httpconn.h"
 
 
-class TcpServer {
+class WebServer {
 public:
-    TcpServer(int port, int trig_mode, int timeout_ms, bool opt_linger, 
-              int conpool_num, int thread_num,
-              bool open_log, int log_level, int log_queue_size);
-    ~TcpServer();
+    WebServer(int port, int trig_mode, int timeout_ms, bool opt_linger, 
+              int thread_num, bool open_log, int log_level, int log_queue_size);
+    ~WebServer();
     void start();
 
 private:    
@@ -30,16 +29,16 @@ private:
     void add_client(int fd, sockaddr_in addr);
 
     void deal_listen();
-    void deal_write();
-    void deal_read();
+    void deal_write(HttpConn* client);
+    void deal_read(HttpConn* client);
 
     void send_error(int fd, const char* info);
-    void extent_time();
-    void close_connection();
+    void extent_time(HttpConn* client);
+    void close_connection(HttpConn* client);
 
-    void on_read();
-    void on_write();
-    void on_process();
+    void on_read(HttpConn* client);
+    void on_write(HttpConn* client);
+    void on_process(HttpConn* client);
 
     static int set_fd_nonblock(int fd);
 
@@ -59,8 +58,9 @@ private:
     std::unique_ptr<HeapTimer> timer_;
     std::unique_ptr<ThreadPool> threadpool_;
     std::unique_ptr<Epoller> epoller_;
-    std::unordered_map<int, HttpCon> users_;
+    std::unordered_map<int, HttpConn> users_;
 
 };
 
-#endif // !__SERVER_H_
+
+#endif // !__WEBSERVER_H_

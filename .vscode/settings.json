@@ -50,6 +50,11 @@
         "chrono": "cpp",
         "ratio": "cpp",
         "mutex": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "bitset": "cpp",
+        "map": "cpp",
+        "unordered_set": "cpp",
+        "regex": "cpp",
+        "shared_mutex": "cpp"
     }
 }

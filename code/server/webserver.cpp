@@ -1,16 +1,21 @@
 /**
-
- * @Date    :       2020-12-20
+ * @Date    :       2020-12-18
 */
+#include "webserver.h"
 
-#include "tcpserver.h"
-
-TcpServer::TcpServer(int port, int trig_mode, int timeout_ms, bool opt_linger,
-                     int conpool_num, int thread_num,
-                     bool open_log, int log_level, int log_queue_size) : 
-                     port_(port), opt_linger_(opt_linger), timeout_ms_(timeout_ms), is_close_(false),
-                     timer_(new HeapTimer()), threadpool_(new ThreadPool(thread_num)),epoller_(new Epoller())
+WebServer::WebServer(
+        int port, int trig_mode, int timeout_ms, bool opt_linger,
+        int thread_num, bool open_log, int log_level, int log_queue_size) : 
+        port_(port), opt_linger_(opt_linger), timeout_ms_(timeout_ms), is_close_(false),
+        timer_(new HeapTimer()), threadpool_(new ThreadPool(thread_num)),epoller_(new Epoller())
 {
+    src_dir_ = getcwd(nullptr, 256);
+    assert (src_dir_);
+    strncat(src_dir_, "/resources/", 16);
+
+    HttpConn::src_dir = src_dir_;
+    HttpConn::user_count = 0;
+
     //设置端口监听和读写事件的触发模式
     init_event_mode(trig_mode);
 
@@ -37,16 +42,17 @@ TcpServer::TcpServer(int port, int trig_mode, int timeout_ms, bool opt_linger,
     } 
 }
 
-TcpServer::~TcpServer() {
+WebServer::~WebServer() {
     close(listen_fd_);
     is_close_ = true;
+    free(src_dir_);
 }
 
 
 /**
  * 设置监听连接事件和读写事件的触发模式
 */
-void TcpServer::init_event_mode(int trig_mode) {
+void WebServer::init_event_mode(int trig_mode) {
     listen_event_ = EPOLLRDHUP;//TCP连接对端关闭
     conn_event_ = EPOLLONESHOT | EPOLLRDHUP;//一个连接仅被一个线程处理以及对端关闭连接
 
@@ -74,7 +80,7 @@ void TcpServer::init_event_mode(int trig_mode) {
 /**
  * 事件循环核心
 */
-void TcpServer::start() {
+void WebServer::start() {
     int timeout = -1;
     if (!is_close_) LOG_INFO("========== Server start ==========");
 
@@ -93,10 +99,10 @@ void TcpServer::start() {
                 deal_listen();
             }
             else if (events & EPOLLIN) {//可读事件
-                deal_read();
+                deal_read(&users_[fd]);
             }
             else if (events & EPOLLOUT) {//可写事件
-                deal_writel();
+                deal_write(&users_[fd]);
             }
             else {//出错
                 LOG_ERROR("Unexpected event");
@@ -108,13 +114,13 @@ void TcpServer::start() {
 /**
  * 添加新的连接
 */
-void TcpServer::add_client(int fd, sockaddr_in addr) {
+void WebServer::add_client(int fd, sockaddr_in addr) {
     assert(fd > 0);
     users_[fd].init(fd, addr);
 
     if (timeout_ms_ > 0) {
         //添加定时事件
-        timer_->add(fd, timeout_ms_, std::bind(&TcpServer::close_connection, this, &users_[fd]));
+        timer_->add(fd, timeout_ms_, std::bind(&WebServer::close_connection, this, &users_[fd]));
     }
 
     epoller_->add_fd(fd, conn_event_|EPOLLIN);
@@ -128,7 +134,7 @@ void TcpServer::add_client(int fd, sockaddr_in addr) {
 /**
  * 给连接发送忙消息然后断开连接
 */
-void TcpServer::send_error(int fd, const char* info) {
+void WebServer::send_error(int fd, const char* info) {
     assert(fd > 0);
     int ret = send(fd, info, strlen(info), 0);
     if (ret < 0) {
@@ -140,23 +146,24 @@ void TcpServer::send_error(int fd, const char* info) {
 /**
  * 断开连接
 */
-void TcpServer::close_connection(client) {
-    LOG_INFO("CLIENT[%d] quit", fd);
-    epoller_->del_fd(fd);
-    client->close();
+void WebServer::close_connection(HttpConn* client) {
+    assert(client);
+    LOG_INFO("CLIENT[%d] quit", client->get_fd());
+    epoller_->del_fd(client->get_fd());
+    client->close_conn();
 }
 
 
 /**
  * 处理新的连接事件
 */
-void TcpServer::deal_listen() {
+void WebServer::deal_listen() {
     struct sockaddr_in addr;
     socklen_t addrlen = sizeof(addr);
     do {
         int fd = accept(listen_fd_, (struct sockaddr *)&addr, &addrlen);
         if (fd < 0) return;
-        else if (HttpCon::user_count >= MAX_FD) {
+        else if (HttpConn::user_count >= MAX_FD) {
             send_error(fd, "server busy!");
             LOG_WARN("server busy, client is full!");
             close(fd);//连接过多关闭，增加关闭连接
@@ -170,81 +177,83 @@ void TcpServer::deal_listen() {
 /**
  * 处理读事件
 */
-void TcpServer::deal_read() {
+void WebServer::deal_read(HttpConn* client) {
+    assert(client);
     //将读事件回调添加到线程池事件队列
     extent_time(client);//更新此连接的定时时间
     //add task to read
-    threadpool_->add_task(std::bind(&TcpServer::on_read, this, client));
+    threadpool_->add_task(std::bind(&WebServer::on_read, this, client));
 }
 
 /**
  * 处理写事件
 */
-void TcpServer::deal_write() {
-    extent_time();
+void WebServer::deal_write(HttpConn* client) {
+    assert(client);
+    extent_time(client);
     //add task to write
-    threadpool_->add_task(std::bind(&TcpServer::on_write, this, client));
+    threadpool_->add_task(std::bind(&WebServer::on_write, this, client));
 }
 
 /**
  * 读回调函数
 */
-void TcpServer::on_read() {
+void WebServer::on_read(HttpConn* client) {
     int ret = -1;
     int read_error = 0;
-    ret = //读取消息
-    if (ret <= 0) && read_error != EAGAIN) {
-        close_connection();
+    ret = client->read(&read_error);
+    if (ret <= 0 && read_error != EAGAIN) {
+        close_connection(client);
         return;
     }
-    on_process();//处理消息,如果有一个完整的请求则注册写监听响应请求
+    on_process(client);//处理消息,如果有一个完整的请求则注册写监听响应请求
 }
 
 /**
  * 写回调函数
 */
-void TcpServer::on_write() {
+void WebServer::on_write(HttpConn* client) {
     int ret = -1;
     int write_error = 0;
-    ret = //写入消息
-    if (//消息全部写入完成) {
-        if (keepAlive) {
-            on_process();
+    ret = client->write(&write_error);
+    if (client->to_write_bytes() == 0) {
+        if (client->is_keepalive()) {
+            on_process(client);
             return;
         }
     }
     else if (ret < 0) {
         if (write_error == EAGAIN) {
-            epoller->mod_fd(fd, conn_event_|EPOLLOUT);
+            epoller_->mod_fd(client->get_fd(), conn_event_|EPOLLOUT);
             return;
         }
     }
-    close//关闭连接
+    close_connection(client);
 }
 
 /**
  * 处理数据看看是否有一个完整的消息
 */
-void TcpServer::on_process() {
-    if (//包含一个完整的消息) {
-        epoller_->mod_fd(fd,  conn_event_|EPOLLOUT);//设置写监听
+void WebServer::on_process(HttpConn* client) {
+    if (client->process()) {
+        epoller_->mod_fd(client->get_fd(),  conn_event_|EPOLLOUT);//设置写监听
     }
     else {
-        epoller_->mod_fd(fd, conn_event_|EPOLLIN);
+        epoller_->mod_fd(client->get_fd(), conn_event_|EPOLLIN);
     }
 }
 
 /**
  * 更新连接的定时器
 */
-void TcpServer::extent_time() {
-    if (timeout_ms_ > 0) timer_->adjust(id, timeout_ms_);
+void WebServer::extent_time(HttpConn* client) {
+    if (timeout_ms_ > 0) timer_->adjust(client->get_fd(), timeout_ms_);
 }
 
 /**
  * 初始化监听端口
 */
-bool TcpServer::init_socket() {
+bool WebServer::init_socket() {
     int ret;
     struct sockaddr_in addr;
     if (port_ > 65535 || port_ < 0) {
@@ -322,7 +331,7 @@ bool TcpServer::init_socket() {
 /**
  * 设置fd非阻塞
 */
-int TcpServer::set_fd_nonblock(int fd) {
+int WebServer::set_fd_nonblock(int fd) {
     assert(fd > 0);
     return fcntl(fd, F_SETFL, fcntl(fd, F_GETFD, 0)|O_NONBLOCK);
 }
