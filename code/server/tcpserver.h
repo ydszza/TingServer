@@ -14,7 +14,7 @@
 #include "heaptimer.h"
 #include "threadpool.h"
 #include "epoller.h"
-
+#include "tcpconn.h"
 
 class TcpServer {
 public:
@@ -30,16 +30,16 @@ private:
     void add_client(int fd, sockaddr_in addr);
 
     void deal_listen();
-    void deal_write();
-    void deal_read();
+    void deal_write(TcpConn* client);
+    void deal_read(TcpConn* client);
 
     void send_error(int fd, const char* info);
-    void extent_time();
-    void close_connection();
+    void extent_time(TcpConn* client);
+    void close_connection(TcpConn* client);
 
-    void on_read();
-    void on_write();
-    void on_process();
+    void on_read(TcpConn* client);
+    void on_write(TcpConn* client);
+    void on_process(TcpConn* client);
 
     static int set_fd_nonblock(int fd);
 
@@ -59,7 +59,7 @@ private:
     std::unique_ptr<HeapTimer> timer_;
     std::unique_ptr<ThreadPool> threadpool_;
     std::unique_ptr<Epoller> epoller_;
-    std::unordered_map<int, HttpCon> users_;
+    std::unordered_map<int, TcpConn> users_;
 
 };
 

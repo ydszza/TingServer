@@ -37,13 +37,13 @@ public:
     static std::atomic<int> user_count;
 
 private:
+    bool parse();
+
+private:
     int fd_;
     struct sockaddr_in addr_;
 
     bool is_close_;
-
-    struct iovec iov_[2];
-    int iov_len;
 
     Buffer read_buffer_;
     Buffer write_buffer_;

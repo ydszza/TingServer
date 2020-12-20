@@ -103,10 +103,10 @@ ssize_t HttpConn::write(int* error) {
 bool HttpConn::process() {
     if (read_buffer_.get_readable_bytes() <= 0) return false;
     else if (request_.parse(read_buffer_)) {
-        response_.init(src_dir_, request_.get_path(), request_.is_keepalive(), 200);
+        response_.init(src_dir, request_.get_path(), request_.is_keepalive(), 200);
     }
     else {
-        response_.init(src_dir_, request_.get_path(), false, 400);
+        response_.init(src_dir, request_.get_path(), false, 400);
     }
 
     response_.make_response(write_buffer_);

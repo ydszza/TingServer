@@ -93,10 +93,10 @@ void TcpServer::start() {
                 deal_listen();
             }
             else if (events & EPOLLIN) {//可读事件
-                deal_read();
+                deal_read(&users_[fd]);
             }
             else if (events & EPOLLOUT) {//可写事件
-                deal_writel();
+                deal_write(&users_[fd]);
             }
             else {//出错
                 LOG_ERROR("Unexpected event");
@@ -140,10 +140,10 @@ void TcpServer::send_error(int fd, const char* info) {
 /**
  * 断开连接
 */
-void TcpServer::close_connection(client) {
-    LOG_INFO("CLIENT[%d] quit", fd);
-    epoller_->del_fd(fd);
-    client->close();
+void TcpServer::close_connection(TcpConn* client) {
+    LOG_INFO("CLIENT[%d] quit", client->get_fd());
+    epoller_->del_fd(client->get_fd());
+    client->close_conn();
 }
 
 
@@ -156,7 +156,7 @@ void TcpServer::deal_listen() {
     do {
         int fd = accept(listen_fd_, (struct sockaddr *)&addr, &addrlen);
         if (fd < 0) return;
-        else if (HttpCon::user_count >= MAX_FD) {
+        else if (TcpConn::user_count >= MAX_FD) {
             send_error(fd, "server busy!");
             LOG_WARN("server busy, client is full!");
             close(fd);//连接过多关闭，增加关闭连接
@@ -170,7 +170,7 @@ void TcpServer::deal_listen() {
 /**
  * 处理读事件
 */
-void TcpServer::deal_read() {
+void TcpServer::deal_read(TcpConn* client) {
     //将读事件回调添加到线程池事件队列
     extent_time(client);//更新此连接的定时时间
     //add task to read
@@ -180,8 +180,8 @@ void TcpServer::deal_read() {
 /**
  * 处理写事件
 */
-void TcpServer::deal_write() {
-    extent_time();
+void TcpServer::deal_write(TcpConn* client) {
+    extent_time(client);
     //add task to write
     threadpool_->add_task(std::bind(&TcpServer::on_write, this, client));
 }
@@ -189,56 +189,56 @@ void TcpServer::deal_write() {
 /**
  * 读回调函数
 */
-void TcpServer::on_read() {
+void TcpServer::on_read(TcpConn* client) {
     int ret = -1;
     int read_error = 0;
-    ret = //读取消息
-    if (ret <= 0) && read_error != EAGAIN) {
-        close_connection();
+    ret = client->read(&read_error);
+    if (ret <= 0 && read_error != EAGAIN) {
+        close_connection(client);
         return;
     }
-    on_process();//处理消息,如果有一个完整的请求则注册写监听响应请求
+    on_process(client);//处理消息,如果有一个完整的请求则注册写监听响应请求
 }
 
 /**
  * 写回调函数
 */
-void TcpServer::on_write() {
+void TcpServer::on_write(TcpConn* client) {
     int ret = -1;
     int write_error = 0;
-    ret = //写入消息
-    if (//消息全部写入完成) {
-        if (keepAlive) {
-            on_process();
+    ret = client->write(&write_error);
+    if (client->to_write_bytes()) {
+        if (client->is_keepalive()) {
+            on_process(client);
             return;
         }
     }
     else if (ret < 0) {
         if (write_error == EAGAIN) {
-            epoller->mod_fd(fd, conn_event_|EPOLLOUT);
+            epoller_->mod_fd(client->get_fd(), conn_event_|EPOLLOUT);
             return;
         }
     }
-    close//关闭连接
+    close_connection(client);
 }
 
 /**
  * 处理数据看看是否有一个完整的消息
 */
-void TcpServer::on_process() {
-    if (//包含一个完整的消息) {
-        epoller_->mod_fd(fd,  conn_event_|EPOLLOUT);//设置写监听
+void TcpServer::on_process(TcpConn* client) {
+    if (client->process()) {
+        epoller_->mod_fd(client->get_fd(), conn_event_|EPOLLOUT);//设置写监听
     }
     else {
-        epoller_->mod_fd(fd, conn_event_|EPOLLIN);
+        epoller_->mod_fd(client->get_fd(), conn_event_|EPOLLIN);
     }
 }
 
 /**
  * 更新连接的定时器
 */
-void TcpServer::extent_time() {
-    if (timeout_ms_ > 0) timer_->adjust(id, timeout_ms_);
+void TcpServer::extent_time(TcpConn* client) {
+    if (timeout_ms_ > 0) timer_->adjust(client->get_fd(), timeout_ms_);
 }
 
 /**

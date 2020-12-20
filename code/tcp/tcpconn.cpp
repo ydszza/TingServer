@@ -52,7 +52,7 @@ sockaddr_in TcpConn::get_addr() const {
 }
 
 int TcpConn::to_write_bytes() {
-    return iov_[0].iov_len + iov_[1].iov_len; 
+    return write_buffer_.get_readable_bytes();
 }
 
 bool TcpConn::is_keepalive() const {
@@ -72,25 +72,15 @@ ssize_t TcpConn::read(int* error) {
 ssize_t TcpConn::write(int* error) {
     ssize_t len = -1;
     do {
-        len = writev(fd_, iov_, iov_len);
+        len = write_buffer_.write_to_fd(fd_, error);
         if (len <= 0) {
             *error = errno;
             break;
         }
-        if (iov_[0].iov_len+iov_[1].iov_len == 0) {//数据全部发送完毕
+        if (write_buffer_.get_readable_bytes() == 0) {//数据全部发送完毕
             break;
         }
-        else if (static_cast<size_t>(len) > iov_[0].iov_len) {
-            iov_[1].iov_base = (uint8_t *)iov_[1].iov_base + (len - iov_[0].iov_len);
-            iov_[1].iov_len -= (len - iov_[0].iov_len);
-            if (iov_[0].iov_len) {
-                write_buffer_.retrieve_all();
-                iov_[1].iov_len = 0;
-            }
-        }
         else {
-            iov_[0].iov_base = (uint8_t *)iov_[0].iov_base + len;
-            iov_[1].iov_len -= len;
             write_buffer_.retrieve(len);
         }
     } while (is_ET || to_write_bytes());
@@ -99,7 +89,13 @@ ssize_t TcpConn::write(int* error) {
 
 bool TcpConn::process() {
     if (read_buffer_.get_readable_bytes() <= 0) return false;
-    else if (//解析数据是否有一个完整的消息) {
+    else if (parse()) {
         
     }
+}
+
+bool TcpConn::parse() {
+    //解析读去到的数据，如果包含一个完整的命令则执行然后返回结果
+    //to do here
+    return true;
 }

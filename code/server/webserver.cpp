@@ -29,10 +29,10 @@ WebServer::WebServer(
 
     //打印启动server日志信息
     if (is_close_) {
-        LOG_ERROR("========== Server init error!==========");
+        LOG_ERROR("========== WebServer init error!==========");
     }
     else {
-        LOG_INFO("========== Server init ==========");
+        LOG_INFO("========== WebServer init ==========");
         LOG_INFO("Port:%d, opt_linger: %s", port_, opt_linger? "true":"false");
         LOG_INFO("Listen Mode: %s, OpenConn Mode: %s",
                         (listen_event_ & EPOLLET ? "ET": "LT"),
@@ -82,7 +82,7 @@ void WebServer::init_event_mode(int trig_mode) {
 */
 void WebServer::start() {
     int timeout = -1;
-    if (!is_close_) LOG_INFO("========== Server start ==========");
+    if (!is_close_) LOG_INFO("========== WebServer start ==========");
 
     while (!is_close_) {
 
