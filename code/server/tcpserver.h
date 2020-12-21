@@ -11,10 +11,10 @@
 #include <arpa/inet.h>
 #include <memory>
 #include <unordered_map>
-#include "heaptimer.h"
-#include "threadpool.h"
-#include "epoller.h"
-#include "tcpconn.h"
+#include "../timer/heaptimer.h"
+#include "../pool/threadpool.h"
+#include "../event/epoller.h"
+#include "../tcp/tcpconn.h"
 
 class TcpServer {
 public:

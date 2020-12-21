@@ -132,7 +132,7 @@ void HeapTimer::clear() {
 void HeapTimer::tick() {
     if (heap_.empty()) return;
     while (heap_.size()) {
-        if (heap_[0].expires - Clock::now() > 0) break;
+        if (std::chrono::duration_cast<MS>(heap_[0].expires - Clock::now()).count() > 0) break;
         heap_[0].cb();
         pop();
     }

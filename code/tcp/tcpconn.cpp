@@ -23,7 +23,7 @@ void TcpConn::init(int fd, const struct sockaddr_in& addr) {
     write_buffer_.retrieve_all();
     read_buffer_.retrieve_all();
     is_close_ = false;
-    LOG_INFO("client[%d](%s:%d) in, user_count: %d",fd_, get_ip(), get_port(), user_count);
+    LOG_INFO("client[%d](%s:%d) in, user_count: %d",fd_, get_ip(), get_port(), static_cast<int>(user_count));
 }
 
 void TcpConn::close_conn() {
@@ -31,7 +31,7 @@ void TcpConn::close_conn() {
         is_close_ = true;
         user_count--;
         close(fd_);
-        LOG_INFO("client[%d](%s:%d) quit, user_count: %d",fd_, get_ip(), get_port(), user_count);
+        LOG_INFO("client[%d](%s:%d) quit, user_count: %d",fd_, get_ip(), get_port(), static_cast<int>(user_count));
     }
 }
 
@@ -92,10 +92,11 @@ bool TcpConn::process() {
     else if (parse()) {
         
     }
+    return false;
 }
 
 bool TcpConn::parse() {
     //解析读去到的数据，如果包含一个完整的命令则执行然后返回结果
     //to do here
-    return true;
+    return false;
 }

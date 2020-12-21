@@ -145,7 +145,7 @@ ssize_t Buffer::read_from_fd(int fd, int* error) {
     if (len < 0) {//读出错
         *error = errno;
     }
-    else if (len <= writable) {//读取的内容长度小于可写缓存长度
+    else if (static_cast<size_t>(len) <= writable) {//读取的内容长度小于可写缓存长度
         write_pos_ += len;
     }
     else {//读取的内容超过已有缓存长度
@@ -186,7 +186,6 @@ void Buffer::make_space(size_t len) {
         buffer_.resize(write_pos_ + len + 1);
     }
     else {
-        size_t read_size = get_readable_bytes();
         std::copy(get_begin_ptr()+read_pos_, get_begin_ptr()+write_pos_, get_begin_ptr());
         write_pos_ -= read_pos_;
         read_pos_ = 0;

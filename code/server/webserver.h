@@ -10,10 +10,10 @@
 #include <arpa/inet.h>
 #include <memory>
 #include <unordered_map>
-#include "heaptimer.h"
-#include "threadpool.h"
-#include "epoller.h"
-#include "httpconn.h"
+#include "../timer/heaptimer.h"
+#include "../pool/threadpool.h"
+#include "../event/epoller.h"
+#include "../http/httpconn.h"
 
 
 class WebServer {

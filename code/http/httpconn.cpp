@@ -24,7 +24,7 @@ void HttpConn::init(int fd, const struct sockaddr_in& addr) {
     write_buffer_.retrieve_all();
     read_buffer_.retrieve_all();
     is_close_ = false;
-    LOG_INFO("client[%d](%s:%d) in, user_count: %d",fd_, get_ip(), get_port(), user_count);
+    LOG_INFO("client[%d](%s:%d) in, user_count: %d",fd_, get_ip(), get_port(), static_cast<int>(user_count));
 }
 
 void HttpConn::close_conn() {
@@ -33,7 +33,7 @@ void HttpConn::close_conn() {
         is_close_ = true;
         user_count--;
         close(fd_);
-        LOG_INFO("client[%d](%s:%d) quit, user_count: %d",fd_, get_ip(), get_port(), user_count);
+        LOG_INFO("client[%d](%s:%d) quit, user_count: %d",fd_, get_ip(), get_port(), static_cast<int>(user_count));
     }
 }
 

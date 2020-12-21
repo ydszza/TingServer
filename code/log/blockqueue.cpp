@@ -24,7 +24,7 @@ void BlockQueue<T>::close() {
         deq_.clear();
         is_close_ = true;
     }
-    con_consumer_.notify_all();
+    cond_consumer_.notify_all();
     cond_producer_.notify_all();
 }
 
@@ -141,7 +141,7 @@ bool BlockQueue<T>::pop(T& item, int timeout) {
     std::unique_lock<std::mutex> lock(mtx_);
     while (deq_.empty()) {
         if (cond_consumer_.wait_for(lock, std::chrono::seconds(timeout)) 
-                == std::chrono::cv_status::timeout) {
+                == std::cv_status::timeout) {
             return false;
         }
         if (is_close_) return false;

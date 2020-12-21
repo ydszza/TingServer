@@ -12,8 +12,8 @@
 #include <string>
 #include <algorithm>
 #include <regex>
-#include "buffer.h"
-#include "log.h"
+#include "../buffer/buffer.h"
+#include "../log/log.h"
 
 
 class HttpRequest {

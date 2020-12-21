@@ -15,17 +15,20 @@
 #include <time.h>
 #include <arpa/inet.h>
 #include <assert.h>
-#include "log.h"
+#include "../log/log.h"
 
+
+typedef std::chrono::high_resolution_clock  Clock;
 typedef Clock::time_point TimeStamp;
+typedef std::chrono::milliseconds MS;
 typedef std::function<void()> TimeoutCallback;
 
 
 struct TimerNode {
     int id;
-    TimerStamp expires;
+    TimeStamp expires;
     TimeoutCallback cb;
-    bool operator<(const TimerNpde &other) {
+    bool operator<(const TimerNode &other) {
         return expires < other.expires;
     }
 };
@@ -51,6 +54,6 @@ private:
 private:
     std::vector<TimerNode> heap_;//最小堆数据结构
     std::unordered_map<int, size_t> ref_;//记录定时器在数组的位置和定时器id的映射
-}
+};
 
 #endif // !__HEAPTIMER_H_

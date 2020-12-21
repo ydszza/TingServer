@@ -8,6 +8,7 @@
 
 #include <deque>
 #include <mutex>
+#include <assert.h>
 #include <condition_variable>
 #include <sys/time.h>
 
@@ -40,7 +41,7 @@ private:
     size_t capacity_;//队列的容量
 
     std::mutex mtx_;//队列互斥锁
-    std::condition_variable con_consumer_;//队列pop条件变量
+    std::condition_variable cond_consumer_;//队列pop条件变量
     std::condition_variable cond_producer_;//队列push条件变量
 
     bool is_close_;//是否打开阻塞队列

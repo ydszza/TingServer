@@ -11,10 +11,11 @@
 #include <thread>
 #include <mutex>
 #include <string>
+#include <stdarg.h>
 #include <sys/time.h>
 #include <sys/stat.h>
 #include "blockqueue.h"
-#include "buffer.h"
+#include "../buffer/buffer.h"
 
 
 class Log {

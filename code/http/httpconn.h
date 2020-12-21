@@ -10,8 +10,8 @@
 #include <arpa/inet.h>
 #include <atomic>
 #include <sys/uio.h>
-#include "buffer.h"
-#include "log.h"
+#include "../buffer/buffer.h"
+#include "../log/log.h"
 #include "httprequest.h"
 #include "httpresponse.h"
 

@@ -10,7 +10,7 @@
 #include <mutex>
 #include <assert.h>
 #include <semaphore.h>
-#include "log.h"
+#include "../log/log.h"
 
 class SqlConPool {
 public:
