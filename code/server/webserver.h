@@ -9,6 +9,7 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <memory>
+#include <functional>
 #include <unordered_map>
 #include "../timer/heaptimer.h"
 #include "../pool/threadpool.h"

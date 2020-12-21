@@ -4,12 +4,12 @@
 */
 #include "blockqueue.h"
 
-template <typename T>
+template<class T>
 BlockQueue<T>::BlockQueue(size_t max_capacity) : capacity_(max_capacity), is_close_(false) {
     assert(max_capacity > 0);
 }
 
-template <typename T>
+template<class T>
 BlockQueue<T>::~BlockQueue() {
     close();
 }
@@ -17,7 +17,7 @@ BlockQueue<T>::~BlockQueue() {
 /**
  * 清空队列并且设置标志位关闭
 */
-template<typename T>
+template<class T>
 void BlockQueue<T>::close() {
     {
         std::lock_guard<std::mutex> lock(mtx_);
@@ -31,7 +31,7 @@ void BlockQueue<T>::close() {
 /**
  * 清空队列
 */
-template<typename T>
+template<class T>
 void BlockQueue<T>::clear() {
     std::lock_guard<std::mutex> lock(mtx_);
     deq_.clear();
@@ -40,7 +40,7 @@ void BlockQueue<T>::clear() {
 /**
  * 获取队列是否空
 */
-template<typename T>
+template<class T>
 bool BlockQueue<T>::empty() {
     std::lock_guard<std::mutex> lock(mtx_);
     return deq_.empty();
@@ -49,7 +49,7 @@ bool BlockQueue<T>::empty() {
 /**
  * 获取队列是否满
 */
-template<typename T>
+template<class T>
 bool BlockQueue<T>::full() {
     std::lock_guard<std::mutex> lock(mtx_);
     return deq_.size() >= capacity_;
@@ -58,7 +58,7 @@ bool BlockQueue<T>::full() {
 /**
  * 获取当前队列数量
 */
-template<typename T>
+template<class T>
 size_t BlockQueue<T>::size() const {
     std::lock_guard<std::mutex> lock(mtx_);
     return deq_.size();
@@ -67,7 +67,7 @@ size_t BlockQueue<T>::size() const {
 /**
  * 获取队列的最大容量
 */
-template<typename T>
+template<class T>
 size_t BlockQueue<T>::capacity() const {
     std::lock_guard<std::mutex> lock(mtx_);
     return capacity_;
@@ -76,7 +76,7 @@ size_t BlockQueue<T>::capacity() const {
 /**
  * 获取队首元素
 */
-template<typename T>
+template<class T>
 T BlockQueue<T>::front() {
     std::lock_guard<std::mutex> lock(mtx_);
     return deq_.front();
@@ -85,7 +85,7 @@ T BlockQueue<T>::front() {
 /**
  * 获取队尾元素
 */
-template<typename T>
+template<class T>
 T BlockQueue<T>::back() {
     std::lock_guard<std::mutex> lock(mtx_);
     return deq_.back();
@@ -94,7 +94,7 @@ T BlockQueue<T>::back() {
 /**
  * push_front
 */
-template<typename T>
+template<class T>
 void BlockQueue<T>::push_front(const T& item) {
     std::unique_lock<std::mutex> lock(mtx_);
     while (deq_.size() >= capacity_) {
@@ -107,7 +107,7 @@ void BlockQueue<T>::push_front(const T& item) {
 /**
  * push_back
 */
-template<typename T>
+template<class T>
 void BlockQueue<T>::push_back(const T& item) {
     std::unique_lock<std::mutex> lock(mtx_);
     while (deq_.size() >= capacity_) {
@@ -120,7 +120,7 @@ void BlockQueue<T>::push_back(const T& item) {
 /**
  * pop
 */
-template<typename T>
+template<class T>
 bool BlockQueue<T>::pop(T& item) {
     std::unique_lock<std::mutex> lock(mtx_);
     while (deq_.empty()) {
@@ -136,7 +136,7 @@ bool BlockQueue<T>::pop(T& item) {
 /**
  * pop并设置超时时间
 */
-template<typename T>
+template<class T>
 bool BlockQueue<T>::pop(T& item, int timeout) {
     std::unique_lock<std::mutex> lock(mtx_);
     while (deq_.empty()) {
@@ -155,7 +155,7 @@ bool BlockQueue<T>::pop(T& item, int timeout) {
 /**
  * 通知一个消费者
 */
-template<typename T>
+template<class T>
 void BlockQueue<T>::flush() {
     cond_consumer_.notify_one();
 }

@@ -6,11 +6,12 @@
 #include "httprequest.h"
 
 /*默认页面索引*/
-const std::unordered_set<std::string> DEFAULT_HTML = {
-    "/index", "/picture"
+const std::unordered_set<std::string> HttpRequest::DEFAULT_HTML {
+    "/index", "/picture",
 };
 
-const std::unordered_map<std::string, int> DEFAULT_HTML_TAG;//登录或注册界面表单区别标志
+const std::unordered_map<std::string, int> HttpRequest::DEFAULT_HTML_TAG{
+            {"/register.html", 0}, {"/login.html", 1},  };//登录或注册界面表单区别标志
 
 HttpRequest::HttpRequest() {
     init();

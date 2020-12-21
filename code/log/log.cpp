@@ -47,11 +47,11 @@ void Log::init(int level, const char* path,
         is_async_ = true;//开启异步写日志
         //创建日志缓存队列
         std::unique_ptr<BlockQueue<std::string>> new_queue(new BlockQueue<std::string>());
-        deque_ = move(new_queue);
+        deque_ = std::move(new_queue);
 
         //创建异步写日志线程
         std::unique_ptr<std::thread> new_thread(new std::thread(flush_log_thread));
-        write_thread_ = move(new_thread);
+        write_thread_ = std::move(new_thread);
     }
     else {
         is_async_ = false;

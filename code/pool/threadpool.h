@@ -15,13 +15,45 @@
 
 class ThreadPool {
 public:
-    ThreadPool(int max_thread_num = 1);
+    ThreadPool(int max_thread_num = 1) : pool_(std::make_shared<struct pool>()) {
+        for (int i = 0; i < max_thread_num; i++) {
+            std::thread([pool = pool_] {
+                std::unique_lock<std::mutex> lock(pool->mtx_);
+                while (true) {
+                    if (pool->tasks.size()) {
+                        auto task = pool->tasks.front();
+                        pool->tasks.pop();
+                        lock.unlock();
+                        task();
+                        lock.lock();
+                    }
+                    else if (pool->is_close_) break;
+                    else pool->cond.wait(lock);
+                }
+            }).detach();
+        }
+    }
+
     ThreadPool() = default;
     ThreadPool(ThreadPool&& other) = default;
-    ~ThreadPool();
+    ~ThreadPool() {
+        if (static_cast<bool>(pool_)) {
+            {
+                std::lock_guard<std::mutex> lock(pool_->mtx_);
+                pool_->is_close_ = true;
+            }
+            pool_->cond.notify_all();
+        }
+    }
 
     template <typename T>
-    void add_task(T&& task);
+    void add_task(T&& task) {
+        {
+            std::lock_guard<std::mutex> lock(pool_->mtx_);
+            pool_->tasks.emplace(std::forward<T>(task));
+        }
+        pool_->cond.notify_one();
+    }
 
 private:
     struct pool {

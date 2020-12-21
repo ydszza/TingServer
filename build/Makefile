@@ -3,8 +3,8 @@ CFLAGS = -std=c++14 -O2 -Wall -g
 
 TARGET = server
 OBJS = ../code/log/*.cpp ../code/pool/*.cpp ../code/timer/*.cpp \
-	   ../code/event/*.cpp ../code/tcp/*.cpp \
-       ../code/http/*.cpp ../code/server/*.cpp \
+	   ../code/event/*.cpp \
+       ../code/http/*.cpp ../code/server/webserver.cpp \
        ../code/buffer/*.cpp ../code/main.cpp
 
 all: $(OBJS)
