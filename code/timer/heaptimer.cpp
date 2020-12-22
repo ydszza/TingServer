@@ -5,8 +5,8 @@
 
 #include "heaptimer.h"
 
-HeapTimer::HeapTimer() : heap_(64) {
-
+HeapTimer::HeapTimer() {
+    heap_.reserve(64);
 }
 
 HeapTimer::~HeapTimer() {
@@ -43,7 +43,8 @@ void HeapTimer::siftup(size_t i) {
  * 下滤
 */
 bool HeapTimer::siftdown(size_t index, size_t n) {
-    assert(index >= 0 && index < heap_.size() && n >= 0 && n < heap_.size());
+    assert(index >= 0 && index < heap_.size());
+    assert(n >= 0 && n <= heap_.size());
     size_t i = index, j = index * 2 * 1;
     while (j < n) {
         //找出最小的子节点
@@ -76,7 +77,7 @@ void HeapTimer::add(int id, int expires, TimeoutCallback cb) {
     //是新的定时器还是已经存在的
     if (ref_.count(id) == 0) {
         i = heap_.size();
-        ref_[id] = id;
+        ref_[id] = i;
         heap_.push_back({id, Clock::now()+MS(expires), cb});
         siftup(i);
     }
@@ -132,7 +133,9 @@ void HeapTimer::clear() {
 void HeapTimer::tick() {
     if (heap_.empty()) return;
     while (heap_.size()) {
-        if (std::chrono::duration_cast<MS>(heap_[0].expires - Clock::now()).count() > 0) break;
+        if (std::chrono::duration_cast<MS>(heap_[0].expires - Clock::now()).count() > 0) {
+            break;
+        }
         heap_[0].cb();
         pop();
     }

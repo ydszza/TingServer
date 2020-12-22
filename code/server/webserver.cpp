@@ -2,6 +2,7 @@
  * @Date    :       2020-12-18
 */
 #include "webserver.h"
+#include <iostream>
 
 WebServer::WebServer(
         int port, int trig_mode, int timeout_ms, bool opt_linger,
@@ -83,7 +84,6 @@ void WebServer::init_event_mode(int trig_mode) {
 void WebServer::start() {
     int timeout = -1;
     if (!is_close_) LOG_INFO("========== WebServer start ==========");
-
     while (!is_close_) {
 
         //初始定时值-1，后续为定时器中时间最短的定时器
@@ -127,7 +127,7 @@ void WebServer::add_client(int fd, sockaddr_in addr) {
 
     set_fd_nonblock(fd);
 
-    LOG_INFO("client[fd] in", users_[fd].get_fd());
+    LOG_INFO("client[%d] in", users_[fd].get_fd());
 }
 
 
@@ -148,7 +148,7 @@ void WebServer::send_error(int fd, const char* info) {
 */
 void WebServer::close_connection(HttpConn* client) {
     assert(client);
-    LOG_INFO("CLIENT[%d] quit", client->get_fd());
+    LOG_INFO("client[%d] quit", client->get_fd());
     epoller_->del_fd(client->get_fd());
     client->close_conn();
 }

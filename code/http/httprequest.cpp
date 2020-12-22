@@ -7,7 +7,8 @@
 
 /*默认页面索引*/
 const std::unordered_set<std::string> HttpRequest::DEFAULT_HTML {
-    "/index", "/picture",
+    "/index", "/register", "/login",
+    "/welcome", "/video", "/picture", 
 };
 
 const std::unordered_map<std::string, int> HttpRequest::DEFAULT_HTML_TAG{

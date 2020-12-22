@@ -53,7 +53,7 @@ private:
     bool is_open_;//是否打开日志系统
 
     Buffer buffer_;//要输出的日志内容
-    int level_;//日志等级
+    int level_;//日志输出限制等级
     bool is_async_;//是否开启异步写日志
 
     FILE* fp_;//日志文件

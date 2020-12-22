@@ -16,12 +16,13 @@
 class ThreadPool {
 public:
     ThreadPool(int max_thread_num = 1) : pool_(std::make_shared<struct pool>()) {
+        assert(max_thread_num > 0);
         for (int i = 0; i < max_thread_num; i++) {
             std::thread([pool = pool_] {
                 std::unique_lock<std::mutex> lock(pool->mtx_);
                 while (true) {
                     if (pool->tasks.size()) {
-                        auto task = pool->tasks.front();
+                        auto task = std::move(pool->tasks.front());
                         pool->tasks.pop();
                         lock.unlock();
                         task();
@@ -35,7 +36,7 @@ public:
     }
 
     ThreadPool() = default;
-    ThreadPool(ThreadPool&& other) = default;
+    ThreadPool(ThreadPool&&) = default;
     ~ThreadPool() {
         if (static_cast<bool>(pool_)) {
             {

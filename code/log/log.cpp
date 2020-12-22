@@ -4,6 +4,7 @@
 */
 
 #include "log.h"
+#include <iostream>
 
 Log::Log() {
     line_count_ = 0;
@@ -68,7 +69,7 @@ void Log::init(int level, const char* path,
     suffix_ = suffix;//日志文件后缀
     char file_name[LOG_NAME_LEN] = {0};
     snprintf(file_name, LOG_NAME_LEN-1, "%s/%04d_%02d_%02d%s",//log/年月日.log
-            path_, t.tm_year, t.tm_mon, t.tm_mday, suffix_);
+            path_, t.tm_year+1900, t.tm_mon+1, t.tm_mday, suffix_);
     today_ = t.tm_mday;//标记当天
 
     {
@@ -114,6 +115,7 @@ void Log::ansync_write() {
     while (deque_->pop(str)) {
         std::lock_guard<std::mutex> lock(mtx_);
         fputs(str.c_str(), fp_);
+        std::cout << "ansync write" << str << std::endl;
     }
 }
 
@@ -172,7 +174,7 @@ void Log::write(int level, const char* format, ...) {
         va_list args;
         va_start(args, format);
         //把日志内容添加
-        int m = vsnprintf(buffer_.get_begin_write_ptr(), buffer_.get_readable_bytes(), format, args);
+        int m = vsnprintf(buffer_.get_begin_write_ptr(), buffer_.get_writable_bytes(), format, args);
         va_end(args);
         buffer_.has_written(m);
 
