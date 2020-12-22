@@ -2,7 +2,6 @@
  * @Date    :       2020-12-18
 */
 #include "webserver.h"
-#include <iostream>
 
 WebServer::WebServer(
         int port, int trig_mode, int timeout_ms, bool opt_linger,
@@ -14,6 +13,7 @@ WebServer::WebServer(
     assert (src_dir_);
     strncat(src_dir_, "/resources/", 16);
 
+    //设置http响应文件的路径
     HttpConn::src_dir = src_dir_;
     HttpConn::user_count = 0;
 

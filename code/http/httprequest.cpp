@@ -36,6 +36,7 @@ bool HttpRequest::is_keepalive() const {
 
 /**
  * 从buffer中解析一个完整的http请求
+ * 此解析方法存在问题，如果请求格式不完整或非法格式，会导致问题
 */
 bool HttpRequest::parse(Buffer& buffer) {
     const char CTRL[] = "\r\n";

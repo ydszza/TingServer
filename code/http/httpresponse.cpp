@@ -5,6 +5,8 @@
 
 #include "httpresponse.h"
 
+#include <iostream>
+
 const std::unordered_map<std::string, std::string> HttpResponse::SUFFIX_TYPE = {
     { ".html",  "text/html" },
     { ".xml",   "text/xml" },
@@ -101,25 +103,25 @@ size_t HttpResponse::get_file_len() const {
  * 设置错误页面
 */
 void HttpResponse::error_html() {
-    if (CODE_PATH.count(code_)) {
-        path_ = CODE_PATH.find(code_)->second;
-        stat((src_dir_ + path_).data(), &mm_file_stat_);
+    if (CODE_PATH.count(code_)) {//找得到对应的错误代码页面
+        path_ = CODE_PATH.find(code_)->second;//更新文件请求资源路径
+        stat((src_dir_ + path_).data(), &mm_file_stat_);//获取文件信息
     }
 }
 
 /**
- * 添加响应状态
+ * 添加响应状态行
 */
 void HttpResponse::add_state_line(Buffer& buffer) {
     std::string status;
-    if (CODE_PATH.count(code_)) {
+    if (CODE_PATH.count(code_)) {//转化错误代码对应的相应信息
         status = CODE_STATUS.find(code_)->second;
     }
     else {
         code_ = 400;
         status = CODE_STATUS.find(code_)->second;
     }
-    buffer.append("HTTP/1.1" + std::to_string(code_) + " " + status + "\r\n");
+    buffer.append("HTTP/1.1 " + std::to_string(code_) + " " + status + "\r\n");
 }
 
 /**
@@ -169,7 +171,7 @@ void HttpResponse::unmap_file() {
 }
 
 /**
- * 获取响应文件类型头
+ * 根据文件的后缀名在map获取响应文件类型头
 */
 std::string HttpResponse::get_file_type() {
     std::string::size_type pos = path_.find_last_of('.');

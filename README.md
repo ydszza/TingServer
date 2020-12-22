@@ -19,3 +19,6 @@ C++实现的高性能网络编程框架
 
 ## 状态
 更新中...
+
+### 注：
+    参照[WebServer](https://github.com/markparticle/WebServer)设计，并计划加以完善扩展。
