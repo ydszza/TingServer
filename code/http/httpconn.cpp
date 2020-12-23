@@ -27,6 +27,10 @@ void HttpConn::init(int fd, const struct sockaddr_in& addr) {
     LOG_INFO("client[%d](%s:%d) in, user_count: %d",fd_, get_ip(), get_port(), static_cast<int>(user_count));
 }
 
+/**
+ * 取消文件映射
+ * 关闭套接字
+*/
 void HttpConn::close_conn() {
     response_.unmap_file();
     if (!is_close_) {
@@ -65,7 +69,7 @@ ssize_t HttpConn::read(int* error) {
     ssize_t len = -1;
     do {
         len = read_buffer_.read_from_fd(fd_, error);
-        if (len < 0) break;
+        if (len <= 0) break;
     } while (is_ET);
 
     return len;
@@ -86,6 +90,7 @@ ssize_t HttpConn::write(int* error) {
             //移动到未发送的起始位置
             iov_[1].iov_base = (uint8_t *)iov_[1].iov_base + (len - iov_[0].iov_len);
             iov_[1].iov_len -= (len - iov_[0].iov_len);
+            
             if (iov_[0].iov_len) {//清空已发送的数据
                 write_buffer_.retrieve_all();
                 iov_[1].iov_len = 0;
@@ -121,6 +126,6 @@ bool HttpConn::process() {
         iov_len = 2;
     }
 
-    LOG_DEBUG("file size: %d, %d to %d", response_.get_file_len(), to_write_bytes());
+    LOG_DEBUG("file size: %d,%d to %d", response_.get_file_len(), iov_len, to_write_bytes());
     return true;
 }

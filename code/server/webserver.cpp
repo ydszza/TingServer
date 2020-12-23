@@ -92,16 +92,23 @@ void WebServer::start() {
 
         //处理触发的事件
         for (int i = 0; i < event_cnt; ++i) {
+
             int fd = epoller_->get_event_fd(i);
             uint32_t events = epoller_->get_events(i);
 
             if (fd == listen_fd_) {//连接事件
                 deal_listen();
             }
+            else if (events & (EPOLLRDHUP|EPOLLHUP|EPOLLERR)) {
+                assert(users_.count(fd) > 0);
+                close_connection(&users_[fd]);
+            }
             else if (events & EPOLLIN) {//可读事件
+                assert(users_.count(fd) > 0);
                 deal_read(&users_[fd]);
             }
             else if (events & EPOLLOUT) {//可写事件
+                assert(users_.count(fd) > 0);
                 deal_write(&users_[fd]);
             }
             else {//出错
@@ -145,6 +152,7 @@ void WebServer::send_error(int fd, const char* info) {
 
 /**
  * 断开连接
+ * 取消epoll监听
 */
 void WebServer::close_connection(HttpConn* client) {
     assert(client);
@@ -162,11 +170,11 @@ void WebServer::deal_listen() {
     socklen_t addrlen = sizeof(addr);
     do {
         int fd = accept(listen_fd_, (struct sockaddr *)&addr, &addrlen);
-        if (fd < 0) return;
+        if (fd <= 0) return;
         else if (HttpConn::user_count >= MAX_FD) {
             send_error(fd, "server busy!");
             LOG_WARN("server busy, client is full!");
-            close(fd);//连接过多关闭，增加关闭连接
+            //close(fd);//连接过多关闭，增加关闭连接
             return;
         }
         add_client(fd, addr);

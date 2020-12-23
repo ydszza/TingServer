@@ -12,6 +12,9 @@
 #include <string>
 #include <algorithm>
 #include <regex>
+#include <mysql/mysql.h>
+#include "../pool/sqlconRAII.h"
+#include "../pool/sqlconpool.h"
 #include "../buffer/buffer.h"
 #include "../log/log.h"
 
@@ -60,6 +63,7 @@ private:
     void parse_post();
     void parse_form_urlencoded();
 
+    static bool user_verify(const std::string& name, const std::string& password, bool is_login);
     static int convert_hex(char ch);
 
 private:

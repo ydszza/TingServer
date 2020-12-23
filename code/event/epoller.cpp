@@ -38,7 +38,7 @@ bool Epoller::del_fd(int fd) {
 }
 
 int Epoller::wait(int timeout_ms) {
-    return epoll_wait(epoll_fd_, &events_[0], events_.size(), timeout_ms);
+    return epoll_wait(epoll_fd_, &events_[0], static_cast<int>(events_.size()), timeout_ms);
 }
 
 int Epoller::get_event_fd(size_t i) const {

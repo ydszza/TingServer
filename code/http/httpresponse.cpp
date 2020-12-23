@@ -78,7 +78,6 @@ void HttpResponse::make_response(Buffer& buffer) {
     else if (!(mm_file_stat_.st_mode & S_IROTH)) {
         code_ = 403;
     }
-    
     error_html();
     add_state_line(buffer);
     add_header(buffer);
@@ -114,7 +113,7 @@ void HttpResponse::error_html() {
 */
 void HttpResponse::add_state_line(Buffer& buffer) {
     std::string status;
-    if (CODE_PATH.count(code_)) {//转化错误代码对应的相应信息
+    if (CODE_STATUS.count(code_)) {//转化错误代码对应的相应信息
         status = CODE_STATUS.find(code_)->second;
     }
     else {

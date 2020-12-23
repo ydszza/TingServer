@@ -115,7 +115,7 @@ void Log::ansync_write() {
     while (deque_->pop(str)) {
         std::lock_guard<std::mutex> lock(mtx_);
         fputs(str.c_str(), fp_);
-        std::cout << "ansync write" << str << std::endl;
+        std::cout<< str << std::endl;
     }
 }
 

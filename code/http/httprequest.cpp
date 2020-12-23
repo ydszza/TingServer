@@ -119,9 +119,133 @@ void HttpRequest::parse_body(const std::string& line) {
 }
 
 void HttpRequest::parse_post() {
-    if (method_ != "POST" && headers_["Content-Type"] == "application/x-www-form-urlencoded") return ;
-    //...
+    if (method_ != "POST" && headers_["Content-Type"] == "application/x-www-form-urlencoded") {
+        parse_form_urlencoded();
+        if (DEFAULT_HTML_TAG.count(path_)) {
+            int tag = DEFAULT_HTML_TAG.find(path_)->second;
+            LOG_DEBUG("Tag: %d", tag);
+            if (tag == 0 || tag == 1) {
+                bool is_login = (tag == 1);
+                if (user_verify(post_["username"], post_["password"], is_login)) {
+                    path_ = "/welcome.html";
+                }
+                else {
+                    path_ = "/error.html";
+                }
+            }
+        }
+    }
 }
+
+int HttpRequest::convert_hex(char ch) {
+    if(ch >= 'A' && ch <= 'F') return ch -'A' + 10;
+    if(ch >= 'a' && ch <= 'f') return ch -'a' + 10;
+    return ch;
+}
+
+void HttpRequest::parse_form_urlencoded(){
+    if (body_.size() == 0) return;
+
+    std::string key, val;
+    int num = 0;
+    int n = body_.size();
+    int i = 0, j = 0;
+
+    for (; i < n; ++i){
+        char ch = body_[i];
+        switch (ch){
+            case '=':
+                key = body_.substr(j, i-j);
+                j = i + 1;
+                break;
+            case '+':
+                body_[i] = ' ';
+                break;
+            case '%':
+                num = convert_hex(body_[i]+1)*16 + convert_hex(body_[i+2]);
+                body_[i+2] = num % 10 + '0';
+                body_[i+1] = num / 10 + '0';
+                i += 2;
+                break;
+            case '&':
+                val = body_.substr(j, i-j);
+                j = i + 1;
+                post_[key] = val;
+                LOG_DEBUG("%s = %s", key.c_str(), val.c_str());
+                break;
+            default:
+                break;
+        }
+    }
+    assert(j <= i);
+    if(post_.count(key) == 0 && j < i) {
+        val = body_.substr(j, i - j);
+        post_[key] = val;
+    }
+}
+
+bool HttpRequest::user_verify(const std::string &name, const std::string &pwd, bool isLogin) {
+    if(name == "" || pwd == "") return false;
+    
+    LOG_INFO("Verify name:%s pwd:%s", name.c_str(), pwd.c_str());
+    MYSQL* sql;
+    SqlConRAII(&sql,  SqlConPool::instance());
+    assert(sql);
+    
+    bool flag = false;
+    unsigned int j = 0;
+    char order[256] = { 0 };
+    MYSQL_FIELD *fields = nullptr;
+    MYSQL_RES *res = nullptr;
+    
+    if(!isLogin) { flag = true; }
+    /* 查询用户及密码 */
+    snprintf(order, 256, "SELECT username, password FROM user WHERE username='%s' LIMIT 1", name.c_str());
+    LOG_DEBUG("%s", order);
+
+    if(mysql_query(sql, order)) { 
+        mysql_free_result(res);
+        return false; 
+    }
+    res = mysql_store_result(sql);
+    j = mysql_num_fields(res);
+    fields = mysql_fetch_fields(res);
+
+    while(MYSQL_ROW row = mysql_fetch_row(res)) {
+        LOG_DEBUG("MYSQL ROW: %s %s", row[0], row[1]);
+        std::string password(row[1]);
+        /* 注册行为 且 用户名未被使用*/
+        if(isLogin) {
+            if(pwd == password) { flag = true; }
+            else {
+                flag = false;
+                LOG_DEBUG("pwd error!");
+            }
+        } 
+        else { 
+            flag = false; 
+            LOG_DEBUG("user used!");
+        }
+    }
+    mysql_free_result(res);
+
+    /* 注册行为 且 用户名未被使用*/
+    if(!isLogin && flag == true) {
+        LOG_DEBUG("regirster!");
+        bzero(order, 256);
+        snprintf(order, 256,"INSERT INTO user(username, password) VALUES('%s','%s')", name.c_str(), pwd.c_str());
+        LOG_DEBUG( "%s", order);
+        if(mysql_query(sql, order)) { 
+            LOG_DEBUG( "Insert error!");
+            flag = false; 
+        }
+        flag = true;
+    }
+    SqlConPool::instance()->free_connection(sql);
+    LOG_DEBUG( "UserVerify success!!");
+    return flag;
+}
+
 
 std::string HttpRequest::get_path() const {
     return path_;
