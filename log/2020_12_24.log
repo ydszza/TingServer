@@ -1,0 +1,458 @@
+2020-12-24 09:51:34.182447[info] : ========== WebServer init ==========
+2020-12-24 09:51:34.182478[info] : Port:3880, opt_linger: false
+2020-12-24 09:51:34.182487[info] : Listen Mode: ET, OpenConn Mode: ET
+2020-12-24 09:51:34.182491[info] : LogSys level: 0
+2020-12-24 09:51:34.182566[info] : ThreadPool num: 4
+2020-12-24 09:51:34.182852[info] : ========== WebServer start ==========
+2020-12-24 09:51:37.109697[info] : client[6](127.0.0.1:738) in, user_count: 1
+2020-12-24 09:51:37.109888[info] : client[6] in
+2020-12-24 09:51:37.111253[info] : client[7](127.0.0.1:1250) in, user_count: 2
+2020-12-24 09:51:37.111349[info] : client[7] in
+2020-12-24 09:51:37.115423[debug]: [GET], [/picture.html], [1.1]
+2020-12-24 09:51:37.115670[debug]: file path: /home/ydszze/TingServer/resources/picture.html
+2020-12-24 09:51:37.115779[debug]: file size: 3960,2 to 4082
+2020-12-24 09:51:37.166999[debug]: [GET], [/css/bootstrap.min.css], [1.1]
+2020-12-24 09:51:37.167187[debug]: file path: /home/ydszze/TingServer/resources/css/bootstrap.min.css
+2020-12-24 09:51:37.167225[debug]: file size: 121260,2 to 121384
+2020-12-24 09:51:37.167645[debug]: [GET], [/css/animate.css], [1.1]
+2020-12-24 09:51:37.167815[debug]: file path: /home/ydszze/TingServer/resources/css/animate.css
+2020-12-24 09:51:37.167857[debug]: file size: 72922,2 to 73045
+2020-12-24 09:51:37.181627[debug]: [GET], [/css/magnific-popup.css], [1.1]
+2020-12-24 09:51:37.181892[debug]: file path: /home/ydszze/TingServer/resources/css/magnific-popup.css
+2020-12-24 09:51:37.182028[debug]: file size: 6951,2 to 7073
+2020-12-24 09:51:37.184788[debug]: [GET], [/css/font-awesome.min.css], [1.1]
+2020-12-24 09:51:37.185006[debug]: file path: /home/ydszze/TingServer/resources/css/font-awesome.min.css
+2020-12-24 09:51:37.185156[debug]: file size: 27392,2 to 27515
+2020-12-24 09:51:37.197746[debug]: [GET], [/css/style.css], [1.1]
+2020-12-24 09:51:37.197986[debug]: file path: /home/ydszze/TingServer/resources/css/style.css
+2020-12-24 09:51:37.198135[debug]: file size: 9807,2 to 9929
+2020-12-24 09:51:37.249247[debug]: [GET], [/js/jquery.js], [1.1]
+2020-12-24 09:51:37.249533[debug]: [GET], [/js/bootstrap.min.js], [1.1]
+2020-12-24 09:51:37.249542[debug]: file path: /home/ydszze/TingServer/resources/js/jquery.js
+2020-12-24 09:51:37.249682[debug]: file size: 85658,2 to 85788
+2020-12-24 09:51:37.249697[debug]: file path: /home/ydszze/TingServer/resources/js/bootstrap.min.js
+2020-12-24 09:51:37.249752[debug]: file size: 36868,2 to 36998
+2020-12-24 09:51:37.262872[debug]: [GET], [/js/smoothscroll.js], [1.1]
+2020-12-24 09:51:37.263075[debug]: file path: /home/ydszze/TingServer/resources/js/smoothscroll.js
+2020-12-24 09:51:37.263112[debug]: file size: 4474,2 to 4603
+2020-12-24 09:51:37.263574[debug]: [GET], [/js/jquery.magnific-popup.min.js], [1.1]
+2020-12-24 09:51:37.263751[debug]: file path: /home/ydszze/TingServer/resources/js/jquery.magnific-popup.min.js
+2020-12-24 09:51:37.263884[debug]: file size: 20932,2 to 21062
+2020-12-24 09:51:37.280873[debug]: [GET], [/images/profile-image.jpg], [1.1]
+2020-12-24 09:51:37.281056[debug]: file path: /home/ydszze/TingServer/resources/images/profile-image.jpg
+2020-12-24 09:51:37.281089[debug]: file size: 47176,2 to 47300
+2020-12-24 09:51:37.281815[debug]: [GET], [/images/instagram-image5.jpg], [1.1]
+2020-12-24 09:51:37.282046[debug]: file path: /home/ydszze/TingServer/resources/images/instagram-image5.jpg
+2020-12-24 09:51:37.282068[debug]: file size: 49545,2 to 49669
+2020-12-24 09:51:37.294439[debug]: [GET], [/images/instagram-image4.jpg], [1.1]
+2020-12-24 09:51:37.294741[debug]: [GET], [/images/instagram-image3.jpg], [1.1]
+2020-12-24 09:51:37.294751[debug]: file path: /home/ydszze/TingServer/resources/images/instagram-image4.jpg
+2020-12-24 09:51:37.294938[debug]: file path: /home/ydszze/TingServer/resources/images/instagram-image3.jpg
+2020-12-24 09:51:37.295986[debug]: file size: 103418,2 to 103543
+2020-12-24 09:51:37.305841[debug]: file size: 59528,2 to 59652
+2020-12-24 09:51:37.311817[debug]: [GET], [/images/instagram-image1.jpg], [1.1]
+2020-12-24 09:51:37.313637[debug]: file path: /home/ydszze/TingServer/resources/images/instagram-image1.jpg
+2020-12-24 09:51:37.313920[debug]: file size: 75836,2 to 75960
+2020-12-24 09:51:37.331767[debug]: [GET], [/images/instagram-image2.jpg], [1.1]
+2020-12-24 09:51:37.332014[debug]: file path: /home/ydszze/TingServer/resources/images/instagram-image2.jpg
+2020-12-24 09:51:37.332083[debug]: file size: 67313,2 to 67437
+2020-12-24 09:51:37.351436[debug]: [GET], [/js/magnific-popup-options.js], [1.1]
+2020-12-24 09:51:37.352041[debug]: file path: /home/ydszze/TingServer/resources/js/magnific-popup-options.js
+2020-12-24 09:51:37.352255[debug]: file size: 1069,2 to 1198
+2020-12-24 09:51:37.353282[debug]: [GET], [/js/wow.min.js], [1.1]
+2020-12-24 09:51:37.353512[debug]: file path: /home/ydszze/TingServer/resources/js/wow.min.js
+2020-12-24 09:51:37.353657[debug]: file size: 7082,2 to 7211
+2020-12-24 09:51:37.360262[debug]: [GET], [/js/custom.js], [1.1]
+2020-12-24 09:51:37.360447[debug]: file path: /home/ydszze/TingServer/resources/js/custom.js
+2020-12-24 09:51:37.360547[debug]: file size: 1047,2 to 1176
+2020-12-24 09:51:37.371938[info] : client[8](127.0.0.1:1762) in, user_count: 3
+2020-12-24 09:51:37.372128[info] : client[8] in
+2020-12-24 09:51:37.470097[info] : client[9](127.0.0.1:2274) in, user_count: 4
+2020-12-24 09:51:37.470174[info] : client[9] in
+2020-12-24 09:51:37.473791[info] : client[10](127.0.0.1:2786) in, user_count: 5
+2020-12-24 09:51:37.474124[info] : client[10] in
+2020-12-24 09:51:37.555324[info] : client[11](127.0.0.1:3298) in, user_count: 6
+2020-12-24 09:51:37.555553[info] : client[11] in
+2020-12-24 09:51:41.297371[debug]: [GET], [/images/instagram-image1.jpg], [1.1]
+2020-12-24 09:51:41.297655[debug]: file path: /home/ydszze/TingServer/resources/images/instagram-image1.jpg
+2020-12-24 09:51:41.297825[debug]: file size: 75836,2 to 75960
+2020-12-24 09:51:41.548573[debug]: [GET], [/favicon.ico], [1.1]
+2020-12-24 09:51:41.548840[debug]: file path: /home/ydszze/TingServer/resources/404.html
+2020-12-24 09:51:41.548879[debug]: file size: 3149,2 to 3278
+2020-12-24 09:51:59.333438[debug]: [GET], [/images/instagram-image1.jpg], [1.1]
+2020-12-24 09:51:59.333726[debug]: file path: /home/ydszze/TingServer/resources/images/instagram-image1.jpg
+2020-12-24 09:51:59.333866[debug]: file size: 75836,2 to 75960
+2020-12-24 09:52:37.391252[info] : client[6] quit
+2020-12-24 09:52:37.391501[info] : client[6](127.0.0.1:738) quit, user_count: 5
+2020-12-24 09:52:41.550830[info] : client[9] quit
+2020-12-24 09:52:41.551021[info] : client[9](127.0.0.1:2274) quit, user_count: 4
+2020-12-24 09:52:41.551057[info] : client[10] quit
+2020-12-24 09:52:41.551326[info] : client[10](127.0.0.1:2786) quit, user_count: 3
+2020-12-24 09:52:59.349313[info] : client[7] quit
+2020-12-24 09:52:59.349501[info] : client[7](127.0.0.1:1250) quit, user_count: 2
+2020-12-24 09:52:59.349552[info] : client[11] quit
+2020-12-24 09:52:59.349701[info] : client[11](127.0.0.1:3298) quit, user_count: 1
+2020-12-24 09:52:59.349770[info] : client[8] quit
+2020-12-24 09:52:59.349858[info] : client[8](127.0.0.1:1762) quit, user_count: 0
+2020-12-24 09:53:19.463599[info] : client[6](127.0.0.1:4834) in, user_count: 1
+2020-12-24 09:53:19.464663[info] : client[6] in
+2020-12-24 09:53:19.464742[info] : client[7](127.0.0.1:5346) in, user_count: 2
+2020-12-24 09:53:19.464759[info] : client[7] in
+2020-12-24 09:53:19.469669[debug]: [GET], [/video.html], [1.1]
+2020-12-24 09:53:19.469992[debug]: file path: /home/ydszze/TingServer/resources/video.html
+2020-12-24 09:53:19.470142[debug]: file size: 3347,2 to 3469
+2020-12-24 09:53:19.546732[debug]: [GET], [/css/bootstrap.min.css], [1.1]
+2020-12-24 09:53:19.547870[debug]: [GET], [/css/animate.css], [1.1]
+2020-12-24 09:53:19.548066[debug]: file path: /home/ydszze/TingServer/resources/css/animate.css
+2020-12-24 09:53:19.548088[debug]: file size: 72922,2 to 73045
+2020-12-24 09:53:19.548257[debug]: file path: /home/ydszze/TingServer/resources/css/bootstrap.min.css
+2020-12-24 09:53:19.548894[debug]: file size: 121260,2 to 121384
+2020-12-24 09:53:19.567632[debug]: [GET], [/css/magnific-popup.css], [1.1]
+2020-12-24 09:53:19.568329[debug]: file path: /home/ydszze/TingServer/resources/css/magnific-popup.css
+2020-12-24 09:53:19.568362[debug]: file size: 6951,2 to 7073
+2020-12-24 09:53:19.581116[debug]: [GET], [/css/font-awesome.min.css], [1.1]
+2020-12-24 09:53:19.581939[debug]: file path: /home/ydszze/TingServer/resources/css/font-awesome.min.css
+2020-12-24 09:53:19.582176[debug]: file size: 27392,2 to 27515
+2020-12-24 09:53:19.591543[debug]: [GET], [/css/style.css], [1.1]
+2020-12-24 09:53:19.591823[debug]: file path: /home/ydszze/TingServer/resources/css/style.css
+2020-12-24 09:53:19.591992[debug]: file size: 9807,2 to 9929
+2020-12-24 09:53:19.665893[debug]: [GET], [/js/jquery.js], [1.1]
+2020-12-24 09:53:19.666185[debug]: file path: /home/ydszze/TingServer/resources/js/jquery.js
+2020-12-24 09:53:19.666345[debug]: file size: 85658,2 to 85788
+2020-12-24 09:53:19.678238[debug]: [GET], [/js/bootstrap.min.js], [1.1]
+2020-12-24 09:53:19.678996[debug]: file path: /home/ydszze/TingServer/resources/js/bootstrap.min.js
+2020-12-24 09:53:19.679084[debug]: file size: 36868,2 to 36998
+2020-12-24 09:53:19.719712[debug]: [GET], [/js/jquery.magnific-popup.min.js], [1.1]
+2020-12-24 09:53:19.720048[debug]: file path: /home/ydszze/TingServer/resources/js/jquery.magnific-popup.min.js
+2020-12-24 09:53:19.720175[debug]: file size: 20932,2 to 21062
+2020-12-24 09:53:19.734621[debug]: [GET], [/js/magnific-popup-options.js], [1.1]
+2020-12-24 09:53:19.734897[debug]: file path: /home/ydszze/TingServer/resources/js/magnific-popup-options.js
+2020-12-24 09:53:19.735029[debug]: file size: 1069,2 to 1198
+2020-12-24 09:53:19.741106[info] : client[8](127.0.0.1:5858) in, user_count: 3
+2020-12-24 09:53:19.741278[info] : client[8] in
+2020-12-24 09:53:19.752887[debug]: [GET], [/images/profile-image.jpg], [1.1]
+2020-12-24 09:53:19.753193[debug]: file path: /home/ydszze/TingServer/resources/images/profile-image.jpg
+2020-12-24 09:53:19.753236[debug]: file size: 47176,2 to 47300
+2020-12-24 09:53:19.755371[debug]: [GET], [/js/smoothscroll.js], [1.1]
+2020-12-24 09:53:19.755550[debug]: file path: /home/ydszze/TingServer/resources/js/smoothscroll.js
+2020-12-24 09:53:19.755582[debug]: file size: 4474,2 to 4603
+2020-12-24 09:53:19.755855[debug]: [GET], [/js/wow.min.js], [1.1]
+2020-12-24 09:53:19.755940[debug]: file path: /home/ydszze/TingServer/resources/js/wow.min.js
+2020-12-24 09:53:19.756005[debug]: file size: 7082,2 to 7211
+2020-12-24 09:53:19.787736[debug]: [GET], [/js/custom.js], [1.1]
+2020-12-24 09:53:19.788482[debug]: file path: /home/ydszze/TingServer/resources/js/custom.js
+2020-12-24 09:53:19.789116[debug]: file size: 1047,2 to 1176
+2020-12-24 09:53:19.791628[debug]: [GET], [/video/xxx.mp4], [1.1]
+2020-12-24 09:53:19.791816[debug]: file path: /home/ydszze/TingServer/resources/video/xxx.mp4
+2020-12-24 09:53:19.791949[debug]: file size: 39667571,2 to 39667698
+2020-12-24 09:53:19.855331[info] : client[9](127.0.0.1:6370) in, user_count: 4
+2020-12-24 09:53:19.855502[info] : client[9] in
+2020-12-24 09:53:19.862632[info] : client[10](127.0.0.1:6882) in, user_count: 5
+2020-12-24 09:53:19.863589[info] : client[10] in
+2020-12-24 09:53:19.982833[info] : client[11](127.0.0.1:7394) in, user_count: 6
+2020-12-24 09:53:19.983057[info] : client[11] in
+2020-12-24 09:53:32.120830[info] : client[6] quit
+2020-12-24 09:53:32.121591[info] : client[6](127.0.0.1:4834) quit, user_count: 5
+2020-12-24 09:54:19.779300[info] : client[7] quit
+2020-12-24 09:54:19.779520[info] : client[7](127.0.0.1:5346) quit, user_count: 4
+2020-12-24 09:54:19.785830[info] : client[6] quit
+2020-12-24 09:54:19.855122[info] : client[9] quit
+2020-12-24 09:54:19.855357[info] : client[9](127.0.0.1:6370) quit, user_count: 3
+2020-12-24 09:54:20.885670[info] : client[11] quit
+2020-12-24 09:54:20.885990[info] : client[11](127.0.0.1:7394) quit, user_count: 2
+2020-12-24 09:54:20.887397[info] : client[10] quit
+2020-12-24 09:54:20.887549[info] : client[10](127.0.0.1:6882) quit, user_count: 1
+2020-12-24 09:54:20.889686[info] : client[8] quit
+2020-12-24 12:43:03. 22562[info] : ========== WebServer init ==========
+2020-12-24 12:43:03. 22596[info] : Port:3880, opt_linger: false
+2020-12-24 12:43:03. 22607[info] : Listen Mode: ET, OpenConn Mode: ET
+2020-12-24 12:43:03. 22612[info] : LogSys level: 0
+2020-12-24 12:43:03. 22618[info] : ThreadPool num: 4
+2020-12-24 12:43:03. 22624[info] : ========== WebServer start ==========
+2020-12-24 12:43:12.535973[info] : client[6](127.0.0.1:44770) in, user_count: 1
+2020-12-24 12:43:12.536831[info] : client[6] in
+2020-12-24 12:43:12.536920[info] : client[7](127.0.0.1:45282) in, user_count: 2
+2020-12-24 12:43:12.536940[info] : client[7] in
+2020-12-24 12:43:12.552504[debug]: [GET], [/index.html], [1.1]
+2020-12-24 12:43:12.552713[debug]: file path: /home/ydszze/TingServer/resources/index.html
+2020-12-24 12:43:12.552767[debug]: file size: 3148,2 to 3270
+2020-12-24 12:43:12.610719[debug]: [GET], [/css/magnific-popup.css], [1.1]
+2020-12-24 12:43:12.610879[debug]: file path: /home/ydszze/TingServer/resources/css/magnific-popup.css
+2020-12-24 12:43:12.611173[debug]: file size: 6951,2 to 7073
+2020-12-24 12:43:12.611535[debug]: [GET], [/css/font-awesome.min.css], [1.1]
+2020-12-24 12:43:12.611589[debug]: file path: /home/ydszze/TingServer/resources/css/font-awesome.min.css
+2020-12-24 12:43:12.611719[debug]: file size: 27392,2 to 27515
+2020-12-24 12:43:12.619473[debug]: [GET], [/css/style.css], [1.1]
+2020-12-24 12:43:12.619736[debug]: file path: /home/ydszze/TingServer/resources/css/style.css
+2020-12-24 12:43:12.619850[debug]: file size: 9807,2 to 9929
+2020-12-24 12:43:12.623131[debug]: [GET], [/css/bootstrap.min.css], [1.1]
+2020-12-24 12:43:12.623393[debug]: file path: /home/ydszze/TingServer/resources/css/bootstrap.min.css
+2020-12-24 12:43:12.623558[debug]: file size: 121260,2 to 121384
+2020-12-24 12:43:12.626270[debug]: [GET], [/css/animate.css], [1.1]
+2020-12-24 12:43:12.626865[debug]: file path: /home/ydszze/TingServer/resources/css/animate.css
+2020-12-24 12:43:12.626962[debug]: file size: 72922,2 to 73045
+2020-12-24 12:43:12.716769[debug]: [GET], [/js/jquery.js], [1.1]
+2020-12-24 12:43:12.716984[debug]: file path: /home/ydszze/TingServer/resources/js/jquery.js
+2020-12-24 12:43:12.718707[debug]: file size: 85658,2 to 85788
+2020-12-24 12:43:12.722000[debug]: [GET], [/js/jquery.magnific-popup.min.js], [1.1]
+2020-12-24 12:43:12.722226[debug]: file path: /home/ydszze/TingServer/resources/js/jquery.magnific-popup.min.js
+2020-12-24 12:43:12.727184[debug]: file size: 20932,2 to 21062
+2020-12-24 12:43:12.732708[debug]: [GET], [/js/bootstrap.min.js], [1.1]
+2020-12-24 12:43:12.732929[debug]: file path: /home/ydszze/TingServer/resources/js/bootstrap.min.js
+2020-12-24 12:43:12.734076[debug]: file size: 36868,2 to 36998
+2020-12-24 12:43:12.739462[debug]: [GET], [/js/wow.min.js], [1.1]
+2020-12-24 12:43:12.739670[debug]: file path: /home/ydszze/TingServer/resources/js/wow.min.js
+2020-12-24 12:43:12.748952[debug]: [GET], [/js/smoothscroll.js], [1.1]
+2020-12-24 12:43:12.749291[debug]: file size: 7082,2 to 7211
+2020-12-24 12:43:12.749385[debug]: file path: /home/ydszze/TingServer/resources/js/smoothscroll.js
+2020-12-24 12:43:12.749462[debug]: file size: 4474,2 to 4603
+2020-12-24 12:43:12.756127[debug]: [GET], [/js/magnific-popup-options.js], [1.1]
+2020-12-24 12:43:12.756285[debug]: file path: /home/ydszze/TingServer/resources/js/magnific-popup-options.js
+2020-12-24 12:43:12.756439[debug]: file size: 1069,2 to 1198
+2020-12-24 12:43:12.756849[debug]: [GET], [/js/custom.js], [1.1]
+2020-12-24 12:43:12.756983[debug]: file path: /home/ydszze/TingServer/resources/js/custom.js
+2020-12-24 12:43:12.757039[debug]: file size: 1047,2 to 1176
+2020-12-24 12:43:12.777190[debug]: [GET], [/images/profile-image.jpg], [1.1]
+2020-12-24 12:43:12.777584[debug]: file path: /home/ydszze/TingServer/resources/images/profile-image.jpg
+2020-12-24 12:43:12.782961[debug]: file size: 47176,2 to 47300
+2020-12-24 12:43:12.786921[info] : client[8](127.0.0.1:45794) in, user_count: 3
+2020-12-24 12:43:12.787186[info] : client[8] in
+2020-12-24 12:43:12.911134[info] : client[9](127.0.0.1:46306) in, user_count: 4
+2020-12-24 12:43:12.911275[info] : client[9] in
+2020-12-24 12:43:12.915811[info] : client[10](127.0.0.1:46818) in, user_count: 5
+2020-12-24 12:43:12.915968[info] : client[10] in
+2020-12-24 12:43:13. 22850[info] : client[11](127.0.0.1:47330) in, user_count: 6
+2020-12-24 12:43:13. 23048[info] : client[11] in
+2020-12-24 12:43:16. 71361[debug]: [GET], [/index.html], [1.1]
+2020-12-24 12:43:16. 71572[debug]: file path: /home/ydszze/TingServer/resources/index.html
+2020-12-24 12:43:16. 71619[debug]: file size: 3148,2 to 3270
+2020-12-24 12:43:16.117930[debug]: [GET], [/css/bootstrap.min.css], [1.1]
+2020-12-24 12:43:16.118598[debug]: file path: /home/ydszze/TingServer/resources/css/bootstrap.min.css
+2020-12-24 12:43:16.118755[debug]: file size: 121260,2 to 121384
+2020-12-24 12:43:16.122634[debug]: [GET], [/css/animate.css], [1.1]
+2020-12-24 12:43:16.122776[debug]: file path: /home/ydszze/TingServer/resources/css/animate.css
+2020-12-24 12:43:16.122835[debug]: file size: 72922,2 to 73045
+2020-12-24 12:43:16.123721[debug]: [GET], [/css/magnific-popup.css], [1.1]
+2020-12-24 12:43:16.123937[debug]: file path: /home/ydszze/TingServer/resources/css/magnific-popup.css
+2020-12-24 12:43:16.123978[debug]: file size: 6951,2 to 7073
+2020-12-24 12:43:16.125303[debug]: [GET], [/css/font-awesome.min.css], [1.1]
+2020-12-24 12:43:16.125344[debug]: file path: /home/ydszze/TingServer/resources/css/font-awesome.min.css
+2020-12-24 12:43:16.125360[debug]: file size: 27392,2 to 27515
+2020-12-24 12:43:16.126569[debug]: [GET], [/css/style.css], [1.1]
+2020-12-24 12:43:16.127331[debug]: file path: /home/ydszze/TingServer/resources/css/style.css
+2020-12-24 12:43:16.127511[debug]: file size: 9807,2 to 9929
+2020-12-24 12:43:16.183792[debug]: [GET], [/js/jquery.js], [1.1]
+2020-12-24 12:43:16.184428[debug]: file path: /home/ydszze/TingServer/resources/js/jquery.js
+2020-12-24 12:43:16.184533[debug]: file size: 85658,2 to 85788
+2020-12-24 12:43:16.185653[debug]: [GET], [/js/bootstrap.min.js], [1.1]
+2020-12-24 12:43:16.185924[debug]: file path: /home/ydszze/TingServer/resources/js/bootstrap.min.js
+2020-12-24 12:43:16.185973[debug]: file size: 36868,2 to 36998
+2020-12-24 12:43:16.190104[debug]: [GET], [/js/magnific-popup-options.js], [1.1]
+2020-12-24 12:43:16.190215[debug]: file path: /home/ydszze/TingServer/resources/js/magnific-popup-options.js
+2020-12-24 12:43:16.190238[debug]: file size: 1069,2 to 1198
+2020-12-24 12:43:16.190412[debug]: [GET], [/js/smoothscroll.js], [1.1]
+2020-12-24 12:43:16.190507[debug]: file path: /home/ydszze/TingServer/resources/js/smoothscroll.js
+2020-12-24 12:43:16.190559[debug]: file size: 4474,2 to 4603
+2020-12-24 12:43:16.190107[debug]: [GET], [/js/jquery.magnific-popup.min.js], [1.1]
+2020-12-24 12:43:16.190875[debug]: file path: /home/ydszze/TingServer/resources/js/jquery.magnific-popup.min.js
+2020-12-24 12:43:16.190923[debug]: file size: 20932,2 to 21062
+2020-12-24 12:43:16.191043[debug]: [GET], [/js/wow.min.js], [1.1]
+2020-12-24 12:43:16.191115[debug]: file path: /home/ydszze/TingServer/resources/js/wow.min.js
+2020-12-24 12:43:16.191157[debug]: file size: 7082,2 to 7211
+2020-12-24 12:43:16.210468[debug]: [GET], [/images/profile-image.jpg], [1.1]
+2020-12-24 12:43:16.210744[debug]: file path: /home/ydszze/TingServer/resources/images/profile-image.jpg
+2020-12-24 12:43:16.210884[debug]: file size: 47176,2 to 47300
+2020-12-24 12:43:16.227865[debug]: [GET], [/js/custom.js], [1.1]
+2020-12-24 12:43:16.228133[debug]: file path: /home/ydszze/TingServer/resources/js/custom.js
+2020-12-24 12:43:16.228301[debug]: file size: 1047,2 to 1176
+2020-12-24 12:43:19.210384[debug]: [GET], [/picture.html], [1.1]
+2020-12-24 12:43:19.210653[debug]: file path: /home/ydszze/TingServer/resources/picture.html
+2020-12-24 12:43:19.210775[debug]: file size: 3960,2 to 4082
+2020-12-24 12:43:19.257424[debug]: [GET], [/css/bootstrap.min.css], [1.1]
+2020-12-24 12:43:19.257588[debug]: [GET], [/css/animate.css], [1.1]
+2020-12-24 12:43:19.257601[debug]: file path: /home/ydszze/TingServer/resources/css/bootstrap.min.css
+2020-12-24 12:43:19.257666[debug]: file size: 121260,2 to 121384
+2020-12-24 12:43:19.257707[debug]: file path: /home/ydszze/TingServer/resources/css/animate.css
+2020-12-24 12:43:19.257770[debug]: file size: 72922,2 to 73045
+2020-12-24 12:43:19.257841[debug]: [GET], [/css/magnific-popup.css], [1.1]
+2020-12-24 12:43:19.257892[debug]: file path: /home/ydszze/TingServer/resources/css/magnific-popup.css
+2020-12-24 12:43:19.258180[debug]: file size: 6951,2 to 7073
+2020-12-24 12:43:19.262047[debug]: [GET], [/css/style.css], [1.1]
+2020-12-24 12:43:19.262223[debug]: file path: /home/ydszze/TingServer/resources/css/style.css
+2020-12-24 12:43:19.262231[debug]: [GET], [/css/font-awesome.min.css], [1.1]
+2020-12-24 12:43:19.262328[debug]: file size: 9807,2 to 9929
+2020-12-24 12:43:19.262465[debug]: file path: /home/ydszze/TingServer/resources/css/font-awesome.min.css
+2020-12-24 12:43:19.262556[debug]: file size: 27392,2 to 27515
+2020-12-24 12:43:19.329546[debug]: [GET], [/js/jquery.js], [1.1]
+2020-12-24 12:43:19.330225[debug]: file path: /home/ydszze/TingServer/resources/js/jquery.js
+2020-12-24 12:43:19.330313[debug]: file size: 85658,2 to 85788
+2020-12-24 12:43:19.330732[debug]: [GET], [/js/bootstrap.min.js], [1.1]
+2020-12-24 12:43:19.330807[debug]: [GET], [/js/smoothscroll.js], [1.1]
+2020-12-24 12:43:19.331103[debug]: file path: /home/ydszze/TingServer/resources/js/bootstrap.min.js
+2020-12-24 12:43:19.331155[debug]: file path: /home/ydszze/TingServer/resources/js/smoothscroll.js
+2020-12-24 12:43:19.331215[debug]: file size: 36868,2 to 36998
+2020-12-24 12:43:19.331242[debug]: file size: 4474,2 to 4603
+2020-12-24 12:43:19.335750[debug]: [GET], [/js/wow.min.js], [1.1]
+2020-12-24 12:43:19.335883[debug]: file path: /home/ydszze/TingServer/resources/js/wow.min.js
+2020-12-24 12:43:19.335892[debug]: [GET], [/js/magnific-popup-options.js], [1.1]
+2020-12-24 12:43:19.335934[debug]: [GET], [/js/jquery.magnific-popup.min.js], [1.1]
+2020-12-24 12:43:19.336028[debug]: file size: 7082,2 to 7211
+2020-12-24 12:43:19.336063[debug]: file path: /home/ydszze/TingServer/resources/js/jquery.magnific-popup.min.js
+2020-12-24 12:43:19.336133[debug]: file size: 20932,2 to 21062
+2020-12-24 12:43:19.336208[debug]: file path: /home/ydszze/TingServer/resources/js/magnific-popup-options.js
+2020-12-24 12:43:19.336466[debug]: file size: 1069,2 to 1198
+2020-12-24 12:43:19.360325[debug]: [GET], [/images/instagram-image5.jpg], [1.1]
+2020-12-24 12:43:19.360550[debug]: file path: /home/ydszze/TingServer/resources/images/instagram-image5.jpg
+2020-12-24 12:43:19.360590[debug]: file size: 49545,2 to 49669
+2020-12-24 12:43:19.361529[debug]: [GET], [/images/instagram-image4.jpg], [1.1]
+2020-12-24 12:43:19.361851[debug]: file path: /home/ydszze/TingServer/resources/images/instagram-image4.jpg
+2020-12-24 12:43:19.362763[debug]: [GET], [/images/instagram-image3.jpg], [1.1]
+2020-12-24 12:43:19.366852[debug]: file size: 103418,2 to 103543
+2020-12-24 12:43:19.375647[debug]: file path: /home/ydszze/TingServer/resources/images/instagram-image3.jpg
+2020-12-24 12:43:19.375702[debug]: file size: 59528,2 to 59652
+2020-12-24 12:43:19.376448[debug]: [GET], [/images/profile-image.jpg], [1.1]
+2020-12-24 12:43:19.376555[debug]: file path: /home/ydszze/TingServer/resources/images/profile-image.jpg
+2020-12-24 12:43:19.376576[debug]: file size: 47176,2 to 47300
+2020-12-24 12:43:19.378299[debug]: [GET], [/images/instagram-image2.jpg], [1.1]
+2020-12-24 12:43:19.378975[debug]: file path: /home/ydszze/TingServer/resources/images/instagram-image2.jpg
+2020-12-24 12:43:19.379079[debug]: file size: 67313,2 to 67437
+2020-12-24 12:43:19.393017[debug]: [GET], [/images/instagram-image1.jpg], [1.1]
+2020-12-24 12:43:19.393201[debug]: [GET], [/js/custom.js], [1.1]
+2020-12-24 12:43:19.394136[debug]: file path: /home/ydszze/TingServer/resources/images/instagram-image1.jpg
+2020-12-24 12:43:19.394286[debug]: file path: /home/ydszze/TingServer/resources/js/custom.js
+2020-12-24 12:43:19.394309[debug]: file size: 75836,2 to 75960
+2020-12-24 12:43:19.394393[debug]: file size: 1047,2 to 1176
+2020-12-24 12:43:22.766300[debug]: [GET], [/video.html], [1.1]
+2020-12-24 12:43:22.766628[debug]: file path: /home/ydszze/TingServer/resources/video.html
+2020-12-24 12:43:22.766695[debug]: file size: 3347,2 to 3469
+2020-12-24 12:43:22.815045[debug]: [GET], [/css/bootstrap.min.css], [1.1]
+2020-12-24 12:43:22.815876[debug]: file path: /home/ydszze/TingServer/resources/css/bootstrap.min.css
+2020-12-24 12:43:22.816204[debug]: file size: 121260,2 to 121384
+2020-12-24 12:43:22.816412[debug]: [GET], [/css/animate.css], [1.1]
+2020-12-24 12:43:22.816639[debug]: file path: /home/ydszze/TingServer/resources/css/animate.css
+2020-12-24 12:43:22.817143[debug]: file size: 72922,2 to 73045
+2020-12-24 12:43:22.821650[debug]: [GET], [/css/style.css], [1.1]
+2020-12-24 12:43:22.821780[debug]: file path: /home/ydszze/TingServer/resources/css/style.css
+2020-12-24 12:43:22.821797[debug]: file size: 9807,2 to 9929
+2020-12-24 12:43:22.821802[debug]: [GET], [/css/magnific-popup.css], [1.1]
+2020-12-24 12:43:22.821846[debug]: file path: /home/ydszze/TingServer/resources/css/magnific-popup.css
+2020-12-24 12:43:22.821857[debug]: file size: 6951,2 to 7073
+2020-12-24 12:43:22.821850[debug]: [GET], [/css/font-awesome.min.css], [1.1]
+2020-12-24 12:43:22.822188[debug]: file path: /home/ydszze/TingServer/resources/css/font-awesome.min.css
+2020-12-24 12:43:22.822644[debug]: file size: 27392,2 to 27515
+2020-12-24 12:43:22.910412[debug]: [GET], [/js/jquery.js], [1.1]
+2020-12-24 12:43:22.910621[debug]: file path: /home/ydszze/TingServer/resources/js/jquery.js
+2020-12-24 12:43:22.910792[debug]: file size: 85658,2 to 85788
+2020-12-24 12:43:22.919468[debug]: [GET], [/js/bootstrap.min.js], [1.1]
+2020-12-24 12:43:22.919718[debug]: file path: /home/ydszze/TingServer/resources/js/bootstrap.min.js
+2020-12-24 12:43:22.919879[debug]: file size: 36868,2 to 36998
+2020-12-24 12:43:22.920382[debug]: [GET], [/js/smoothscroll.js], [1.1]
+2020-12-24 12:43:22.920768[debug]: file path: /home/ydszze/TingServer/resources/js/smoothscroll.js
+2020-12-24 12:43:22.920880[debug]: file size: 4474,2 to 4603
+2020-12-24 12:43:22.927931[debug]: [GET], [/js/jquery.magnific-popup.min.js], [1.1]
+2020-12-24 12:43:22.928931[debug]: file path: /home/ydszze/TingServer/resources/js/jquery.magnific-popup.min.js
+2020-12-24 12:43:22.929722[debug]: file size: 20932,2 to 21062
+2020-12-24 12:43:22.934176[debug]: [GET], [/js/magnific-popup-options.js], [1.1]
+2020-12-24 12:43:22.934545[debug]: file path: /home/ydszze/TingServer/resources/js/magnific-popup-options.js
+2020-12-24 12:43:22.934602[debug]: file size: 1069,2 to 1198
+2020-12-24 12:43:22.935637[debug]: [GET], [/js/wow.min.js], [1.1]
+2020-12-24 12:43:22.935720[debug]: file path: /home/ydszze/TingServer/resources/js/wow.min.js
+2020-12-24 12:43:22.935738[debug]: file size: 7082,2 to 7211
+2020-12-24 12:43:22.985214[debug]: [GET], [/js/custom.js], [1.1]
+2020-12-24 12:43:22.986591[debug]: file path: /home/ydszze/TingServer/resources/js/custom.js
+2020-12-24 12:43:22.986781[debug]: file size: 1047,2 to 1176
+2020-12-24 12:43:22.992761[debug]: [GET], [/images/profile-image.jpg], [1.1]
+2020-12-24 12:43:22.993936[debug]: file path: /home/ydszze/TingServer/resources/images/profile-image.jpg
+2020-12-24 12:43:22.994154[debug]: file size: 47176,2 to 47300
+2020-12-24 12:43:23. 32706[debug]: [GET], [/video/xxx.mp4], [1.1]
+2020-12-24 12:43:23. 33072[debug]: file path: /home/ydszze/TingServer/resources/video/xxx.mp4
+2020-12-24 12:43:23. 33219[debug]: file size: 39667571,2 to 39667698
+2020-12-24 12:43:58.496756[debug]: [GET], [/login.html], [1.1]
+2020-12-24 12:43:58.498020[debug]: file path: /home/ydszze/TingServer/resources/login.html
+2020-12-24 12:43:58.498519[debug]: file size: 3385,2 to 3507
+2020-12-24 12:43:58.568801[debug]: [GET], [/css/animate.css], [1.1]
+2020-12-24 12:43:58.568933[debug]: file path: /home/ydszze/TingServer/resources/css/animate.css
+2020-12-24 12:43:58.568952[debug]: file size: 72922,2 to 73045
+2020-12-24 12:43:58.569093[debug]: [GET], [/css/magnific-popup.css], [1.1]
+2020-12-24 12:43:58.569254[debug]: file path: /home/ydszze/TingServer/resources/css/magnific-popup.css
+2020-12-24 12:43:58.569328[debug]: file size: 6951,2 to 7073
+2020-12-24 12:43:58.576989[debug]: [GET], [/css/bootstrap.min.css], [1.1]
+2020-12-24 12:43:58.577125[debug]: file path: /home/ydszze/TingServer/resources/css/bootstrap.min.css
+2020-12-24 12:43:58.577154[debug]: file size: 121260,2 to 121384
+2020-12-24 12:43:58.579382[debug]: [GET], [/css/font-awesome.min.css], [1.1]
+2020-12-24 12:43:58.579586[debug]: file path: /home/ydszze/TingServer/resources/css/font-awesome.min.css
+2020-12-24 12:43:58.579611[debug]: file size: 27392,2 to 27515
+2020-12-24 12:43:58.582791[debug]: [GET], [/js/jquery.js], [1.1]
+2020-12-24 12:43:58.582983[debug]: file path: /home/ydszze/TingServer/resources/js/jquery.js
+2020-12-24 12:43:58.583071[debug]: file size: 85658,2 to 85788
+2020-12-24 12:43:58.583648[debug]: [GET], [/css/style.css], [1.1]
+2020-12-24 12:43:58.583775[debug]: file path: /home/ydszze/TingServer/resources/css/style.css
+2020-12-24 12:43:58.583892[debug]: file size: 9807,2 to 9929
+2020-12-24 12:43:58.594806[debug]: [GET], [/js/bootstrap.min.js], [1.1]
+2020-12-24 12:43:58.595428[debug]: file path: /home/ydszze/TingServer/resources/js/bootstrap.min.js
+2020-12-24 12:43:58.595504[debug]: file size: 36868,2 to 36998
+2020-12-24 12:43:58.597895[debug]: [GET], [/js/smoothscroll.js], [1.1]
+2020-12-24 12:43:58.598168[debug]: file path: /home/ydszze/TingServer/resources/js/smoothscroll.js
+2020-12-24 12:43:58.598284[debug]: file size: 4474,2 to 4603
+2020-12-24 12:43:58.616742[debug]: [GET], [/js/jquery.magnific-popup.min.js], [1.1]
+2020-12-24 12:43:58.616926[debug]: file path: /home/ydszze/TingServer/resources/js/jquery.magnific-popup.min.js
+2020-12-24 12:43:58.617144[debug]: file size: 20932,2 to 21062
+2020-12-24 12:43:58.633243[debug]: [GET], [/js/magnific-popup-options.js], [1.1]
+2020-12-24 12:43:58.633434[debug]: file path: /home/ydszze/TingServer/resources/js/magnific-popup-options.js
+2020-12-24 12:43:58.633511[debug]: file size: 1069,2 to 1198
+2020-12-24 12:43:58.634085[debug]: [GET], [/js/wow.min.js], [1.1]
+2020-12-24 12:43:58.634274[debug]: file path: /home/ydszze/TingServer/resources/js/wow.min.js
+2020-12-24 12:43:58.634408[debug]: file size: 7082,2 to 7211
+2020-12-24 12:43:58.647305[debug]: [GET], [/js/custom.js], [1.1]
+2020-12-24 12:43:58.647541[debug]: file path: /home/ydszze/TingServer/resources/js/custom.js
+2020-12-24 12:43:58.647699[debug]: file size: 1047,2 to 1176
+2020-12-24 12:44:05.100626[debug]: [GET], [/register.html], [1.1]
+2020-12-24 12:44:05.100905[debug]: file path: /home/ydszze/TingServer/resources/register.html
+2020-12-24 12:44:05.100995[debug]: file size: 3380,2 to 3502
+2020-12-24 12:44:05.162966[debug]: [GET], [/css/bootstrap.min.css], [1.1]
+2020-12-24 12:44:05.163158[debug]: file path: /home/ydszze/TingServer/resources/css/bootstrap.min.css
+2020-12-24 12:44:05.163192[debug]: file size: 121260,2 to 121384
+2020-12-24 12:44:05.163308[debug]: [GET], [/css/animate.css], [1.1]
+2020-12-24 12:44:05.163396[debug]: file path: /home/ydszze/TingServer/resources/css/animate.css
+2020-12-24 12:44:05.163432[debug]: file size: 72922,2 to 73045
+2020-12-24 12:44:05.164127[debug]: [GET], [/css/magnific-popup.css], [1.1]
+2020-12-24 12:44:05.164315[debug]: file path: /home/ydszze/TingServer/resources/css/magnific-popup.css
+2020-12-24 12:44:05.164472[debug]: file size: 6951,2 to 7073
+2020-12-24 12:44:05.167995[debug]: [GET], [/css/font-awesome.min.css], [1.1]
+2020-12-24 12:44:05.168160[debug]: [GET], [/css/style.css], [1.1]
+2020-12-24 12:44:05.168169[debug]: file path: /home/ydszze/TingServer/resources/css/font-awesome.min.css
+2020-12-24 12:44:05.168216[debug]: file path: /home/ydszze/TingServer/resources/css/style.css
+2020-12-24 12:44:05.168227[debug]: file size: 9807,2 to 9929
+2020-12-24 12:44:05.168225[debug]: file size: 27392,2 to 27515
+2020-12-24 12:44:05.168979[debug]: [GET], [/js/jquery.js], [1.1]
+2020-12-24 12:44:05.169182[debug]: file path: /home/ydszze/TingServer/resources/js/jquery.js
+2020-12-24 12:44:05.169275[debug]: file size: 85658,2 to 85788
+2020-12-24 12:44:05.189823[debug]: [GET], [/js/bootstrap.min.js], [1.1]
+2020-12-24 12:44:05.190018[debug]: file path: /home/ydszze/TingServer/resources/js/bootstrap.min.js
+2020-12-24 12:44:05.190174[debug]: file size: 36868,2 to 36998
+2020-12-24 12:44:05.190754[debug]: [GET], [/js/smoothscroll.js], [1.1]
+2020-12-24 12:44:05.190982[debug]: file path: /home/ydszze/TingServer/resources/js/smoothscroll.js
+2020-12-24 12:44:05.191046[debug]: file size: 4474,2 to 4603
+2020-12-24 12:44:05.199303[debug]: [GET], [/js/jquery.magnific-popup.min.js], [1.1]
+2020-12-24 12:44:05.199483[debug]: file path: /home/ydszze/TingServer/resources/js/jquery.magnific-popup.min.js
+2020-12-24 12:44:05.199381[debug]: [GET], [/js/wow.min.js], [1.1]
+2020-12-24 12:44:05.199722[debug]: file size: 20932,2 to 21062
+2020-12-24 12:44:05.199725[debug]: file path: /home/ydszze/TingServer/resources/js/wow.min.js
+2020-12-24 12:44:05.199814[debug]: file size: 7082,2 to 7211
+2020-12-24 12:44:05.199888[debug]: [GET], [/js/magnific-popup-options.js], [1.1]
+2020-12-24 12:44:05.199968[debug]: file path: /home/ydszze/TingServer/resources/js/magnific-popup-options.js
+2020-12-24 12:44:05.200000[debug]: file size: 1069,2 to 1198
+2020-12-24 12:44:05.204607[debug]: [GET], [/js/custom.js], [1.1]
+2020-12-24 12:44:05.204968[debug]: file path: /home/ydszze/TingServer/resources/js/custom.js
+2020-12-24 12:44:05.205013[debug]: file size: 1047,2 to 1176
+2020-12-24 12:44:12.764876[info] : client[6] quit
+2020-12-24 12:44:12.765090[info] : client[6](127.0.0.1:44770) quit, user_count: 5
+2020-12-24 12:45:05.230952[info] : client[11] quit
+2020-12-24 12:45:05.231207[info] : client[11](127.0.0.1:47330) quit, user_count: 4
+2020-12-24 12:45:05.231518[info] : client[9] quit
+2020-12-24 12:45:05.231774[info] : client[9](127.0.0.1:46306) quit, user_count: 3
+2020-12-24 12:45:05.232016[info] : client[8] quit
+2020-12-24 12:45:05.232148[info] : client[8](127.0.0.1:45794) quit, user_count: 2
+2020-12-24 12:45:05.232184[info] : client[7] quit
+2020-12-24 12:45:05.232269[info] : client[7](127.0.0.1:45282) quit, user_count: 1
+2020-12-24 12:45:05.232389[info] : client[10] quit

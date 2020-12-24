@@ -18,20 +18,21 @@ public:
     ThreadPool(int max_thread_num = 1) : pool_(std::make_shared<struct pool>()) {
         assert(max_thread_num > 0);
         for (int i = 0; i < max_thread_num; i++) {
-            std::thread([pool = pool_] {
-                std::unique_lock<std::mutex> lock(pool->mtx_);
-                while (true) {
-                    if (pool->tasks.size()) {
-                        auto task = std::move(pool->tasks.front());
-                        pool->tasks.pop();
-                        lock.unlock();
-                        task();
-                        lock.lock();
-                    }
-                    else if (pool->is_close_) break;
-                    else pool->cond.wait(lock);
-                }
-            }).detach();
+            std::thread(std::bind(&ThreadPool::do_task, this)).detach();
+        }
+    }
+    void do_task() {
+        std::unique_lock<std::mutex> lock(pool_->mtx_);
+        while (true) {
+            if (pool_->tasks.size()) {
+                auto task = std::move(pool_->tasks.front());
+                pool_->tasks.pop();
+                lock.unlock();
+                task();
+                lock.lock();
+            }
+            else if (pool_->is_close_) break;
+            else pool_->cond.wait(lock);
         }
     }
 
