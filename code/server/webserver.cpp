@@ -174,7 +174,7 @@ void WebServer::deal_listen() {
         else if (HttpConn::user_count >= MAX_FD) {
             send_error(fd, "server busy!");
             LOG_WARN("server busy, client is full!");
-            //close(fd);//连接过多关闭，增加关闭连接
+            close(fd);//连接过多关闭，增加关闭连接
             return;
         }
         add_client(fd, addr);

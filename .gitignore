@@ -34,3 +34,5 @@
 .vscode/*
 ./bin/*
 ./log/*
+./webbench-1.5/*
+./test/*
