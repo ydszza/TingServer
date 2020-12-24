@@ -11,7 +11,7 @@ WebServer::WebServer(
 {
     src_dir_ = getcwd(nullptr, 256);
     assert (src_dir_);
-    strncat(src_dir_, "/resources/", 16);
+    strncat(src_dir_, "/resources", 16);
 
     //设置http响应文件的路径
     HttpConn::src_dir = src_dir_;
