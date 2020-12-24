@@ -144,14 +144,14 @@ void HttpResponse::add_header(Buffer& buffer) {
 void HttpResponse::add_content(Buffer& buffer) {
     int src_fd = open((src_dir_+ path_).data(), O_RDONLY);
     if (src_fd < 0) {
-        error_content(buffer, "file notfount!");
+        error_content(buffer, "file not fount!");
         return;
     }
 
     LOG_DEBUG("file path: %s", ((src_dir_ + path_).data()));
     int *mm_ret = (int *)mmap(0, mm_file_stat_.st_size, PROT_READ, MAP_PRIVATE, src_fd, 0);
     if (mm_ret < 0) {
-        error_content(buffer, "file notfount!");
+        error_content(buffer, "file not fount!");
         return ;
     }
     mm_file_ = (char *)mm_ret;

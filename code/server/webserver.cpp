@@ -224,18 +224,19 @@ void WebServer::on_write(HttpConn* client) {
     int ret = -1;
     int write_error = 0;
     ret = client->write(&write_error);
-    if (client->to_write_bytes() == 0) {
+    if (client->to_write_bytes() == 0) {//数据全部发送完毕且开启长连接则继续处理请求
         if (client->is_keepalive()) {
             on_process(client);
             return;
         }
     }
-    else if (ret < 0) {
+    else if (ret < 0) {//或者数据一次性发送不完
         if (write_error == EAGAIN) {
             epoller_->mod_fd(client->get_fd(), conn_event_|EPOLLOUT);
             return;
         }
     }
+    //否则关闭连接
     close_connection(client);
 }
 

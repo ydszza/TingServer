@@ -93,21 +93,26 @@ ssize_t HttpConn::write(int* error) {
             
             if (iov_[0].iov_len) {//清空已发送的数据
                 write_buffer_.retrieve_all();
-                iov_[1].iov_len = 0;
+                iov_[0].iov_len = 0;
             }
         }
         else {
             iov_[0].iov_base = (uint8_t *)iov_[0].iov_base + len;
-            iov_[1].iov_len -= len;
+            iov_[0].iov_len -= len;
             write_buffer_.retrieve(len);
         }
     } while (is_ET || to_write_bytes() > 10240);//直到数据少于10k
     return len;
 }
 
+/**
+ * 初始化请求解析对象
+ * 解析请求
+ * 生成响应
+*/
 bool HttpConn::process() {
     request_.init();
-    
+
     if (read_buffer_.get_readable_bytes() <= 0) return false;
     else if (request_.parse(read_buffer_)) {
         response_.init(src_dir, request_.get_path(), request_.is_keepalive(), 200);
